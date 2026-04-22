@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body> <!-- label 태그 활용 -->
+        <!-- 암묵적인 방법 --> <!-- 이런식으로 할 시 체크박스 클릭이 쉬워진다 -->
+        <label> 치즈 <input type="checkbox"> </label>
+        <label> 크러스트 <input type="checkbox"> </label>
+        <label> 새우 <input type="checkbox"> </label>
+        <br><br>
+        <!-- 명시적인 방법 --> <!-- label에는 for input에는 id 속성 -->
+        <label for="cheese"> 치즈 </label>       <input type="checkbox" id="cheese">
+        <label for="crust"> 크러스트 </label>    <input type="checkbox" id="crust">
+        <label for="shrimp"> 새우 </label>       <input type="checkbox" id="shrimp">
+        <br><br>
+        <fieldset> <!-- 그냥 묶음 -->
+            <legend>족발 사이즈</legend> <!--fieldset 이름을 정함-->
+            <label>대<input type="radio" name="size"></label>
+            <label>중<input type="radio" name="size"></label>
+            <label>소<input type="radio" name="size"></label>
+        </fieldset>
+        <fieldset>
+            <legend>블로그 글쓰기</legend>
+            제목 <input type="text" value="초기값"> <br>
+            내용 <textarea name="" id="" placeholder="컨텐츠가 있는 태그"></textarea>
+        </fieldset>
+    </body>
+</html>
