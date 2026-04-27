@@ -13,9 +13,12 @@
         }
         th {color: blue;}
         tr:nth-of-type(2n) {color: red;}
+
+        /* 여기부턴 퀴즈 이후 추가 */
+        .quiz_table.color_blue {color: blue;}
+        .quiz_table.color_red {color: red;}
     </style>
 </head>
-
 <body>
     <table>
         <tr>
@@ -48,8 +51,40 @@
             <td>lognyeon</td>
             <td>장도연</td>
         </tr>
-
+    </table>
+    <br><br><br>
+    <!-- 여기부턴 퀴즈 이후 추가 -->
+    <table class="quiz_table"> 
+        <tr class="color_blue">
+            <th>순번</th>
+            <th>아이디</th>
+            <th>이름</th>
+        </tr>
+        <tr class="color_red">
+            <td>1</td>
+            <td>apple12</td>
+            <td>유재석</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>orange5</td>
+            <td>강호동</td>
+        </tr>
+        <tr class="color_red">
+            <td>3</td>
+            <td>freshwater</td>
+            <td>신동엽</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>takcard</td>
+            <td>탁재훈</td>
+        </tr>
+        <tr class="color_red">
+            <td>5</td>
+            <td>lognyeon</td>
+            <td>장도연</td>
+        </tr>
     </table>
 </body>
-
 </html>
