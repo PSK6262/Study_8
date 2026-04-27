@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .font-attr1{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 30px;
+                font-variant: small-caps; /*소문자를 대문자처럼, 크기는 대문자보다 작다(구분용)*/
+                color:blue;
+                letter-spacing: 10px; /* 자간 */
+                line-height: 20px; /* 행간 */
+            }
+            .font-attr2{
+                font-weight: bold; /* weight 700과 동일 */
+                font-style: oblique; /* 기울이기 , i태그 안 쓰는 이유 */ 
+            }
+            .font-box{
+                text-align: center;
+            }
+            .jua-regular {  /* 글꼴 구글에서 가져오기 */
+                font-family: "Jua", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+            }
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <p>Font Attr 기본 속성</p>
+        <p class="font-attr1">Font Attr 속성1</p>
+        <p class="font-attr2">Font Attr 속성2</p>
+        <i>Font Attr</i>
+
+        <div class="font-box">
+            <p>font box 글자 1</p>
+            <p>font box 글자 2</p>
+            <p>font box 글자 3</p>
+        </div>
+
+        <p>
+            오늘의 특가 <del>5,000원</del><ins>3,000원</ins>
+        </p>
+        <p class="jua-regular"> <!-- 불러온 글꼴 사용 -->
+            오늘의 특가 
+            <span style="text-decoration: line-through;">5,000원</span>
+            <span style="text-decoration: underline;">3,000원</span>
+        </p>
+    </body>
+</html>
