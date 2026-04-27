@@ -25,8 +25,16 @@
                 font-weight: 400;
                 font-style: normal;
             }
+            .inbox1{
+                /* em 상대크기 부모요소의 크기 대비 , 부모요소가 변하면 얘도 변한다 */
+                font-size: 2em;
+            }
+            .inbox2{
+                /* rem 상대크기 , HTML 크기 대비 (따로 정하지 않으면 글자는 모두 16px 고정) , 부모요소와 상관 X */
+                font-size: 2rem;
+            }
         </style>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- 구글에서 폰트 가져오기 -->
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     </head>
@@ -35,20 +43,23 @@
         <p class="font-attr1">Font Attr 속성1</p>
         <p class="font-attr2">Font Attr 속성2</p>
         <i>Font Attr</i>
-
         <div class="font-box">
             <p>font box 글자 1</p>
             <p>font box 글자 2</p>
             <p>font box 글자 3</p>
         </div>
-
         <p>
             오늘의 특가 <del>5,000원</del><ins>3,000원</ins>
         </p>
-        <p class="jua-regular"> <!-- 불러온 글꼴 사용 -->
+        <p>
             오늘의 특가 
             <span style="text-decoration: line-through;">5,000원</span>
             <span style="text-decoration: underline;">3,000원</span>
-        </p>
+        </p><br><br>
+        <div class="font-box2" style="font-size: 30px;">
+            <p class="jua-regular">font box 글자 11</p> <!-- 불러온 글꼴 사용 , size는 위에 적은대로 30px 상속 -->
+            <p class="inbox1">font box 글자 22</p> <!-- 2em이라, 부모의 2배만큼 = 60px -->
+            <p class="inbox2">font box 글자 33</p> <!-- 2erm이라, HTML 기본 폰트사이즈의 2배 = 32px -->
+        </div>
     </body>
 </html>
