@@ -10,10 +10,30 @@
             padding:0;
             box-sizing: border-box;  
         }
-
+        .box{
+            width:400px;
+            height:300px;
+            border: 1px solid red;
+        }
+        .back{
+            background-color: green;
+        }
+        .back-img{
+            background-image: url(../../img/img_key.jpg);
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .back-img-2{
+            background-image: url(../../img/img2.jpg);
+            background-repeat: no-repeat;
+            /* background-size: contain; */
+            background-position: right top;
+        }
     </style>
 </head>
 <body>
-    
+    <div class="box back"></div>
+    <div class="box back-img"></div>
+    <div class="box back-img-2"></div>
 </body>
 </html>
