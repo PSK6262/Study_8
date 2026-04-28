@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box; /*박스모델 사이즈 인식 , border까지의 사이즈로 인식*/ 
+        }
+        .box1{
+            width:200px;
+            height:100px;
+            border : 1px solid black;
+            margin : 10px;
+            padding: 10px;
+            /* 기본 display 설정은 block이다 */
+            /* display:inline; */
+            display: none; /*사라짐*/
+        }
+        .box2{
+            width:200px;
+            height:100px;
+            margin: 10px;
+            padding:10px;
+            border : 1px solid black;
+            display: block; /*한줄 전부 차지 사이즈(높이,너비) 적용가능, 여백 적용 */
+        }
+        .box3{
+            width:200px;
+            height:100px;
+            margin: 10px;
+            padding: 10px;
+            border : 1px solid black;
+            /* display: inline; 
+            자기가 차지하는 만큼만 크기를 잡는다 margin은 왼쪽 오른쪽으로 적용됨, 사이즈 적용불가*/
+            display: inline-block; 
+            /*block이지만 inline으로 설정하면 블록 뒤에 붙는다 자체적으로는 block처럼 외부적으론 inline처럼 상호작용*/
+        }
+        .span1{
+            width:200px;
+            height:100px;
+            display: inline; /*원래부터 인라인임*/
+            /* display: block; 바꿀 수 있다, 기존 인라인에서, 근데 안쓰지 */
+        }
+        .parents{
+            width:200px;
+            height:100px;
+            border:1px solid blue;
+        }
+        .child{
+            width:100px;
+            height:50px;
+            border: 1px solid red;
+            display:none;
+        }
+        .parents:hover .child{
+            display:block;
+            
+        }
+        .parents:hover .parents_span{
+            color: blue;
+            text-decoration: underline;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+        <span class="span1">span1</span>
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quasi sequi praesentium minus, eaque fugit repellendus deleniti, reprehenderit veritatis odit placeat recusandae itaque eos hic animi ipsa aliquam maiores iste?</span>
+        <br><br><br>
+        <div class="parents">
+            <span class="parents_span">부모</span>
+            <div class="child">
+                자식
+            </div>
+        </div>
+    </body>
+</html>
