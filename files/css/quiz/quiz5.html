@@ -19,6 +19,7 @@
         .main {
             width: 100%;
             text-align: center;
+            float:left;
         }
         .top-left {
             background-color: red;
@@ -37,6 +38,11 @@
             width: 100%; /* 500px */
             height: 200px;
             float: left;
+        }
+        .container::after{
+            content:"";
+            display:block;
+            clear:both;
         }
     </style>
 </head>
