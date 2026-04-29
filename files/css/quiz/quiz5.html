@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 500px;
+            height: 500px;   
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        .main {
+            width: 100%;
+            text-align: center;
+        }
+        .top-left {
+            background-color: red;
+            width:50%; /* container가 500px이니 250px임 */
+            height:100px;
+            float: left;
+        }
+        .top-right {
+            background-color: green;
+            width:50%;
+            height:100px;
+            float: left;
+        }
+        .bottom {
+            background-color: blue;
+            width: 100%; /* 500px */
+            height: 200px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-left"></div>
+        <div class="top-right"></div>
+        <div class="main">글자 가운데 정렬</div>
+        <div class="bottom"></div>
+    </div>
+</body>
+</html>
