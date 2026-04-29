@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         .container {
             width: 200px;
             background-color: lightgray;
             position: relative;
         }
-
         .menu {
             height: 50px;
             text-align: center;
         }
-
         .submenu {
             background-color: aquamarine;
             position: absolute;
@@ -35,32 +30,24 @@
             /* Alt+Shift+A */
             display: none;
         }
-        
         .item {
             height: 50px;
         }
-
         /* .menu:hover ~ .submenu {
             display:block; 
         } */
-
         .container:hover .submenu{ /* 컨테이너에 마우스 올리면 submenu를 block으로 바꾸면서 안보이던게 나타남 */
             display:block; 
         }
-
         .item:hover {
             background-color: burlywood;
             color:blue;
             text-decoration: underline;
             cursor:pointer; /* 마우스커서가 검지로 지정하는 그 이미지가 된다. 클릭 될거같은 느낌 들게 */
         }
-
     </style>
-
 </head>
-
 <body>
-
     <div class="container">
         <div class="menu">Menu</div>
         <div class="submenu">
@@ -69,7 +56,5 @@
             <div class="item">submenu item3</div>
         </div>
     </div>
-
 </body>
-
 </html>
