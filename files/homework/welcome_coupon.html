@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 10px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h2 .normal{
+            font-style: normal;
+        }
+        .container{
+            width:300px;
+            height:500px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: auto;
+            position: relative;
+        }
+        .items{
+            position: relative;
+        }
+        .container .items .left{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="items">
+            <h3>지금 가입하시면</h3>
+            <h2>웰컴쿠폰을 드려요!</h2>
+            <span class="left">로그인</span>&nbsp;<span class="left">회원가입</span><br>
+            <div class="left">이메일</div><input type="email" placeholder="이메일을 입력해주세요"><br>
+            이름 / 업체명<br><input type="text" placeholder="2자 이상 20자 이하"><br>
+            비밀번호<br><input type="password" placeholder="영문 숫자 특수문자 조합 6-16자리"><br>
+            비밀번호 확인<br><input type="password" placeholder="비밀번호를 다시 입력해주세요."><br>
+            <h6><input type="checkbox">개인정보수집이용안내 및 약관에 동의합니다.</h6>
+            <input type="button" value="회원 가입하기"><br>
+            <a href="">SNS로 간편하게 가입하기</a>
+        </div>
+    </div>
+</body>
+</html>

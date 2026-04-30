@@ -1,0 +1,9 @@
+서버와 클라이언트란 무엇인가?
+
+서버와 클라이언트의 관계는 어떻게 되는가?
+
+Live Server 로 실행시킬때 나오는 이 주소의 의미가 서버라는 개념과 어떤 관계가 있는가?
+http://127.0.0.1:5500/fe_study/html/start.html
+
+Live Server 확장프로그램을 설치해서 사용하고 있는데,
+Live Server는 Server 라는 이름을 가지고 있다. Live Server 가 제공해주는 기능은 무엇인가?
