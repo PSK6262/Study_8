@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .container{
+            display:flex;
+            /* flex-direction: row; */
+            /* 기본값 row */
+            /* flex-direction: column; */
+            /* flex-direction: row-reverse; */
+            height: 400px;
+            flex-wrap: wrap; 
+            /* 자동줄바꿈 nowrap은 줄바꿈 안하겠다 */
+            flex-flow: row wrap;
+            /* 크기 부족시 꽉 채우는느낌? 뒤에 wrap 붙이면 그냥 또 줄바꿈됨 */
+            justify-content: space-evenly;       
+            /* 이거 만약 디렉션을 row-reverse로 뒀으면 스타트가 역방향임 주의 */
+            /* 주 축에 대한 정렬 
+            space-between 사이의 간격이 균일하도록
+            space-around 각 개채의 양쪽 간격 균일
+            space-evenly between에 around약간 추가느낌 / 맨 첫번째 개체의 앞 마지막 개체의 뒤에도 간격
+            */
+            align-items:center;
+            /* 교차축 방향으로 정렬, 기본축이 가로니 지금은 세로방향 , center 자주 쓰인다. */
+            /* stretch시 세로 한줄 전부 차지함, height 지정안해야됨 */
+        }
+        .item{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .content-center{
+            /* margin:0 auto; */
+            text-align: center; /* 가로만 */
+            /* padding-top:10%; */
+            /* flex 없으면 padding.. 근데 별로임 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item content-center">5</div>
+        <div class="item">6</div>
+        <!-- <div class="item" style="align-self: flex-end;">6</div> -->
+        <!-- 혼자만 떨어트리는것이 가능하다, 두 줄 이상일때 사용함 align-self -->
+    </div>
+</body>
+</html>
