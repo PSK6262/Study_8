@@ -6,42 +6,104 @@
     <title>Document</title>
     <style>
         *{
-            margin: 10px;
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        h2 .normal{
-            font-style: normal;
-        }
         .container{
+            font-size: 14px;
+            margin:20px;
+            padding:5px 20px 20px 20px;
             width:300px;
             height:500px;
             border: 1px solid black;
             border-radius: 10px;
-            margin: auto;
+            text-align: center;
             position: relative;
         }
-        .items{
-            position: relative;
+        a{text-decoration:underline;}
+        .container .items .left{text-align: left;}
+        .container .items .right{text-align: right;}
+        .underline{
+            width:100%;
+            margin-top:5px;
+            border: 1px solid #ccc;
         }
-        .container .items .left{
+        input{
+            width:100%;
+            margin-bottom: 10px;
+            padding:6px;
+        }
+        .font-small{
             text-align: left;
+            font-size: 10px;
+        }
+        input[type="button"]#register{
+            color: white;
+            background-color: #3c4ae6;
+            border:none;
+        }
+        input[type="button"]:active { /*border:none으로 음영을 없앴다 보니 클릭하는 느낌이 없어서*/
+            transform: scale(0.98);
+        }   
+        input[type="checkbox"]{
+            width: auto;
+        }
+        input[type="radio"]{
+            position: absolute;
+            opacity: 0;
+        }
+        input[type="radio"]:checked + label{
+            color: blue;
+            font-weight: bold;
+            border-bottom: 3px solid blue;
+        }
+        .left-span{
+            margin:5px;
+            color: gray;
+            margin-right: 20px;
+        }
+        .X-sign{
+            font-size:20px;
+            display: inline-block;
+            transform: rotate(45deg);
+        }
+        .X-button{
+            border: none;
+            background-color: white;
+            position: absolute;
+        }
+        .X-button:active .X-sign{
+            transform: scale(1.2) rotate(45deg);
+        }
+        .contract{
+            font-size: 12px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="items">
-            <h3>지금 가입하시면</h3>
-            <h2>웰컴쿠폰을 드려요!</h2>
-            <span class="left">로그인</span>&nbsp;<span class="left">회원가입</span><br>
+            <div class="right">
+                <button class="X-button"><span class="X-sign">+</span></button>
+            </div><br>
+            <div class="left" style="font-size: 20px;">지금 가입하시면</div>
+            <div class="left" style="font-size: 20px; font-weight: bold;">웰컴쿠폰을 드려요!</div><br>
+            <div class="left">
+                <input type="radio" name="tab" id="login"><label for="login">로그인</label>&nbsp;
+                <input type="radio" name="tab" id="register" checked><label for="register">회원가입</label>    
+            </div>
+            <div class="underline"></div><br>
             <div class="left">이메일</div><input type="email" placeholder="이메일을 입력해주세요"><br>
-            이름 / 업체명<br><input type="text" placeholder="2자 이상 20자 이하"><br>
-            비밀번호<br><input type="password" placeholder="영문 숫자 특수문자 조합 6-16자리"><br>
-            비밀번호 확인<br><input type="password" placeholder="비밀번호를 다시 입력해주세요."><br>
-            <h6><input type="checkbox">개인정보수집이용안내 및 약관에 동의합니다.</h6>
-            <input type="button" value="회원 가입하기"><br>
-            <a href="">SNS로 간편하게 가입하기</a>
+            <div class="left">이름 / 업체명</div><input type="text" placeholder="2자 이상 20자 이하"><br>
+            <div class="left">비밀번호</div><input type="password" placeholder="영문 숫자 특수문자 조합 6-16자리"><br>
+            <div class="left">비밀번호 확인</div><input type="password" placeholder="비밀번호를 다시 입력해주세요."><br>
+            <div class="left">
+                <input type="checkbox"><span class="contract">&nbsp;<a href="개인정보수집이용안내 링크">개인정보수집이용안내</a>
+                    <span>&nbsp;및&nbsp;</span><a href="약관 링크">약관</a>에 동의 합니다</span>
+            </div>
+            <input type="button" value="회원 가입하기" id="register"><br>
+            <a href="SNS 링크">SNS로 간편하게 가입하기</a>
         </div>
     </div>
 </body>
