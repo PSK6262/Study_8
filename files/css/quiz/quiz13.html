@@ -34,7 +34,11 @@
             background-color: purple;
             border: 2px solid black;
         }
-        .main{display:flex;}
+        .main{
+            width: 800px;
+            height:200px;
+            display:flex;
+        }
         .main-left{
             width:300px;
             height:200px;
@@ -65,6 +69,10 @@
         .f-four{background-color: green;}
         @media screen and (max-width:700px) {
             .container{width:100%;}
+            .main{flex-wrap: wrap; width:100%;} 
+            .main-left{width: 40%;}
+            .main-right{width:60%;}
+            .main-right-1,.main-right-2{width:100%;}
         }
         @media screen and (max-width:650px) {
             .footer{
@@ -74,7 +82,6 @@
             .f-one,.f-two,.f-three,.f-four{width:50%;}
         }
         @media screen and (max-width:500px) {
-            .main{flex-wrap: wrap;}
             .main-left{
                 width:100%; 
                 height:100px;
@@ -88,6 +95,7 @@
             .header-left,.header-right{width:100%;}
         }
         @media screen and (max-width:350px) {
+            .main{height: auto;}
             .main-right{flex-direction: column;}
             .main-right-1,.main-right-2{width:100%;}     
             .f-one,.f-two,.f-three,.f-four{width:100%;}
