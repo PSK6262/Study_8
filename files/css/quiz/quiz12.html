@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .container{
+            margin:auto;
+            margin-top:50px;
+            width: 700px;
+            height: 500px;
+            border: 2px solid black;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+        }
+        .main{display: flex;}
+        .footer{
+            width:700px;
+            height:100px;
+            background-color: blue;
+        }
+        .center{
+            width:490px;
+            height:300px;
+            background-color: orange;
+            padding: 5%;
+            padding-top:8%;
+        }
+        .aside{
+            width:210px;
+            height:300px;
+            background-color: green;
+        }
+        .main-menu{
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+        /* .blank{
+            width: 400px;
+            height: 100px;
+        } */
+        .my-page{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .item{
+            background-color: black;
+            width:100px;
+            height:50px;
+            transition-property: all;
+            transition-duration: 1s;
+        }
+        .item:hover{transform:scale(1.2);}
+        .center-up{
+            display:flex;
+            height:120px;
+            justify-content: space-between;  
+        }
+        .center-down{
+            display:flex;
+            height:120px;
+            justify-content: space-between;  
+        }
+        label{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="main-menu"><label for="main-menu">메인 메뉴</label></div>
+            <!-- <div class="blank"></label></div> -->
+            <div class="my-page"><label for="my-page">마이페이지</div>
+        </div>
+        <div class="main">
+            <div class="center">
+                <div class="center-up">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+                <div class="center-down">
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+            </div>
+            <div class="aside"><label for="aside">aside</label></div>
+        </div>
+        <div class="footer"><label for="footer">footer</label></div>
+    </div>
+</body>
+</html>
