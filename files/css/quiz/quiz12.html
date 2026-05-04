@@ -21,6 +21,16 @@
             display: flex;
             justify-content: space-between;
         }
+        .main-menu{
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+        .my-page{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
         .main{display: flex;}
         .footer{
             width:700px;
@@ -34,33 +44,6 @@
             padding: 5%;
             padding-top:8%;
         }
-        .aside{
-            width:210px;
-            height:300px;
-            background-color: green;
-        }
-        .main-menu{
-            width: 200px;
-            height: 100px;
-            background-color: red;
-        }
-        /* .blank{
-            width: 400px;
-            height: 100px;
-        } */
-        .my-page{
-            width: 100px;
-            height: 100px;
-            background-color: red;
-        }
-        .item{
-            background-color: black;
-            width:100px;
-            height:50px;
-            transition-property: all;
-            transition-duration: 1s;
-        }
-        .item:hover{transform:scale(1.2);}
         .center-up{
             display:flex;
             height:120px;
@@ -71,11 +54,28 @@
             height:120px;
             justify-content: space-between;  
         }
+        .aside{
+            width:210px;
+            height:300px;
+            background-color: green;
+        }
+        /* .blank{
+            width: 400px;
+            height: 100px;
+        } */
+        .item{
+            background-color: black;
+            width:100px;
+            height:50px;
+            transition-property: all;
+            transition-duration: 1s;
+        }
+        .item:hover{transform:scale(1.2);}
         label{
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            height: 100%; /*label은 inline이라 부모크기만큼 가져와야 중앙정렬이 된다*/
             color:white;
         }
     </style>
