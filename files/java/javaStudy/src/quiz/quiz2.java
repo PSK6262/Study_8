@@ -32,13 +32,14 @@ public class quiz2 {
 		String companyName = "SANSUNG";
 		int monitorSize = 24;
 		String monitorColor = "black";
-		boolean HDMI_PORT = true;
-		boolean SOUND_OUTPUT = false;
+		boolean hasHDMI_port = true;
+		boolean hasSound_output = false;
 
 		//3. 3.14 값을 가지고 있는 pi 라는 실수형 변수를 만들고 화면에 출력하세요.
 		//예시) 원주율 : 3.14
 
 		double pi = 3.14;
+		System.out.println("원주율 : "+pi);
 		
 		/*
 		4. 세 개의 문자열 변수가 우리에게 주어졌습니다. 그런데 해당 문자열 변수는 어떤 학생의 점수를 가지고 있습니다.
