@@ -1,4 +1,4 @@
-package be_study.start;
+package start;
 
 public class HelloWorld {
 

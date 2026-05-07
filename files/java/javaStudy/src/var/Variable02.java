@@ -1,4 +1,4 @@
-package be_study.var;
+package var;
 
 public class Variable02 {
 
