@@ -49,20 +49,14 @@ public class quiz18 {
 		}
 		//5 
 		int sum1 = 0;
-		for(int i=1; i<=10; i++) {
-			for(int j=1; j<=i ;j++) {
-				sum1 += j;
-			}
-		}
+		for(int i=1; i<=10; i++) sum1 += i*(10-(i+1));
 		System.out.println(sum1);
 		//6
 		int pmCount = 1;
 		int sum2 = 0;
 		while(true) {
-			if(pmCount%2 == 1) 
-				sum2 += pmCount++;
-			else
-				sum2 -= pmCount++;
+			if(pmCount%2 == 1) sum2 += pmCount++;
+			else sum2 -= pmCount++;
 			if(sum2 >= 100) break;
 		}
 		System.out.println("처음 100이 넘은 시점의 누적합 : "+sum2 +","+(pmCount-1)+"번쨰");
