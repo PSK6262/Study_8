@@ -13,7 +13,7 @@ public class quiz20 {
 		int mCount;
 		int mSelect;
 		
-		while(mContinue.equals("y")) {
+		while(mContinue.equals("y")  || mContinue.equals("Y")) {
 			System.out.println("======== 메뉴 ========");
 			for(int i=0;i<mName.length;i++) {	
 				System.out.printf("%d. %6s   %6d원",(i+1),mName[i],mPrice[i]);
@@ -35,16 +35,23 @@ public class quiz20 {
 			receipt[mSelect-1] += mCount;
 			
 			scan.nextLine();
-			System.out.print("추가 주문하시겠습니까?(y/n) : ");
-			mContinue = scan.nextLine();
+			while(true) {
+				System.out.print("추가 주문하시겠습니까?(y/n) : ");
+				mContinue = scan.nextLine();
+				if((mContinue.equals("y")  || mContinue.equals("Y")
+					|| mContinue.equals("n")  || mContinue.equals("N"))) break;
+				System.out.println("다시 입력해주세요.");
+			}
 			System.out.println();
 		}
 		int sum = 0;
 		System.out.println("=====================");
 		for(int i=0;i<receipt.length;i++) {
-			System.out.printf("%s %d잔 : %d원",mName[i],receipt[i],mPrice[i]*receipt[i]);
-			System.out.println();
-			sum += mPrice[i]*receipt[i];
+			if(receipt[i]!=0) {
+				System.out.printf("%s %d잔 : %d원",mName[i],receipt[i],mPrice[i]*receipt[i]);
+				System.out.println();
+				sum += mPrice[i]*receipt[i];
+			}
 		}
 		System.out.println("=====================");
 		System.out.printf("총액 : %d원",sum);
