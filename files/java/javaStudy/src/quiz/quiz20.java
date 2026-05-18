@@ -16,7 +16,7 @@ public class quiz20 {
 		while(mContinue.equals("y")  || mContinue.equals("Y")) {
 			System.out.println("======== 메뉴 ========");
 			for(int i=0;i<mName.length;i++) {	
-				System.out.printf("%d. %6s   %6d원",(i+1),mName[i],mPrice[i]);
+				System.out.printf("%d. %6s %6d원",(i+1),mName[i],mPrice[i]);
 				System.out.println();
 			}
 			System.out.println("=====================");
@@ -47,8 +47,8 @@ public class quiz20 {
 		int sum = 0;
 		System.out.println("=====================");
 		for(int i=0;i<receipt.length;i++) {
-			if(receipt[i]!=0) {
-				System.out.printf("%s %d잔 : %d원",mName[i],receipt[i],mPrice[i]*receipt[i]);
+			if(receipt[i]>0) {
+				System.out.printf("%s %3d잔 : %3d원",mName[i],receipt[i],mPrice[i]*receipt[i]);
 				System.out.println();
 				sum += mPrice[i]*receipt[i];
 			}
