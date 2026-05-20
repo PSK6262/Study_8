@@ -1,4 +1,4 @@
-package cls;
+package cls.cls01;
 
 public class Student {
 	
