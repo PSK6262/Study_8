@@ -1,4 +1,4 @@
-package be_study.cls.cls05;
+package cls.cls05;
 
 public class Galaxy {
 	

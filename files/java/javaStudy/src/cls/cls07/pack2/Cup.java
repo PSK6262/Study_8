@@ -1,4 +1,4 @@
-package be_study.cls.cls07.pack2;
+package cls.cls07.pack2;
 
 public class Cup {
 	//접근제한자

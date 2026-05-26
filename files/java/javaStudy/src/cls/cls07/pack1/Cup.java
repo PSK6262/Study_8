@@ -1,4 +1,4 @@
-package be_study.cls.cls07.pack1;
+package cls.cls07.pack1;
 
 public class Cup {
 	//기본 default 접근제한 -> 같은 패키지

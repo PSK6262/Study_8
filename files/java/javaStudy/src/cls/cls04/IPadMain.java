@@ -1,4 +1,4 @@
-package be_study.cls.cls04;
+package cls.cls04;
 
 public class IPadMain {
 

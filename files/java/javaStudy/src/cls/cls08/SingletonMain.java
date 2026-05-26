@@ -1,4 +1,4 @@
-package be_study.cls.cls08;
+package cls.cls08;
 
 public class SingletonMain {
 
