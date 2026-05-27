@@ -6,8 +6,8 @@ public class AccountMain {
 		Account accountTest = new Account();
 		accountTest.setBalance(50000);
 		accountTest.setOwner("PSK");
-		
-		accountTest.withdraw(100000);
+//		accountTest.withdraw(100000);
+		System.out.println(accountTest.deposit(-60000));
 
 	}
 
