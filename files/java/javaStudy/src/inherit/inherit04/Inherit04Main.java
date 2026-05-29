@@ -1,11 +1,11 @@
-package inherit.inherit4;
+package inherit.inherit04;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import inherit.inherit3.BluetoothMike;
-import inherit.inherit3.Mike;
-import inherit.inherit3.WirelessMike;
+import inherit.inherit03.BluetoothMike;
+import inherit.inherit03.Mike;
+import inherit.inherit03.WirelessMike;
 
 public class Inherit04Main {
 	public static void main(String[] args) {

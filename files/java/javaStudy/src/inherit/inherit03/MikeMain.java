@@ -1,4 +1,4 @@
-package inherit.inherit3;
+package inherit.inherit03;
 
 public class MikeMain {
 
