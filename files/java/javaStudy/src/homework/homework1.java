@@ -1,26 +1,32 @@
 package homework;
 
-public class homework1 {
+public class homework1 {//1~10
 
 	public static void main(String[] args) {
 		//1
 		int[] iArr = {1,2,3,4,5};
 		for(int p : iArr) System.out.print(p+" ");
 		System.out.println();
+		
 		//2
 		int[] iArr2 = new int[5];
 		iArr2[2] = 50;
+		
 		//3
 		System.out.println(iArr.length);
+		
 		//4
 		int sum = 0;
 		for(int p : iArr) sum+=p;
 		System.out.println(sum);
+		
 		//5 , 1과 동일
 		for(int p : iArr) System.out.print(p+" ");
 		System.out.println();
 		//-----------------//
+		
 		System.out.println(averageInt(iArr2)); //6
+		
 		System.out.println(maxValue(iArr2)); //7
 		
 		for(int p : iArr) System.out.print(p+" "); //8
