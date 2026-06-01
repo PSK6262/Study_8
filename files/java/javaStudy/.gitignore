@@ -118,5 +118,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-programmers_codingtest.java
+
+# 프로그래머스 코테용 폴더 제외
+programmers_codingtest
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,java
