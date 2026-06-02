@@ -7,7 +7,6 @@ public class FoodTruckMain {
 	}
 }
 
-
 /*
  * 푸드트럭
 - 푸드트럭은 여러종류의 음식들을 메뉴로 가지고 있을 수 있다. o

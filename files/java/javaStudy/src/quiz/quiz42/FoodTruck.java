@@ -3,11 +3,11 @@ package quiz.quiz42;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FoodTruck implements Errorcode {
+public class FoodTruck {
 	int income = 0;
 	ArrayList<Menu> menu = new ArrayList<>();
 	
-	public void openFoodTruck() { // 메뉴 보여주기
+	public void openFoodTruck() { // 푸드트럭 오픈
 		int select = 0;
 		while(select != 4) {
 			System.out.println("-----포장마차 오픈-----");
@@ -26,18 +26,19 @@ public class FoodTruck implements Errorcode {
 						       break;
 					case 4: shutDownFoodTruck();
 							   break;
-					default: errMessage(GENERAL_ERROR);
+					default: errMessage(FoodTruckCode.GENERAL_ERROR);
 							   break;
 			}
 		}
 	}
 	public void showMenu() {
 		if(menu.size() == 0) {
-			errMessage(QUANTITY_ERROR);
+			errMessage(FoodTruckCode.QUANTITY_ERROR);
 			System.out.println("메뉴 선택으로 돌아갑니다.");
 			System.out.println();
 			openFoodTruck();
-		} else {
+		} 
+		else {
 			System.out.println("--------------------");
 			for(int i=0;i<menu.size();i++) {
 				System.out.println((i+1)+"."+menu.get(i).getName()+" : "+menu.get(i).getPrice()+"원 // 재고"
@@ -47,27 +48,27 @@ public class FoodTruck implements Errorcode {
 		}
 		System.out.println();
 	}
-	public void orderMenu() { // showMenu 이후 orderMenu 실행(주문)
+	public void orderMenu() { // 주문받기
 		showMenu();
 		int n,m;
 		System.out.println("주문할 물건 번호");
 		n = selectNumber();
-		n = n-1; // index와 값의 차이 보정
+		n = n-1; // index와 value의 차이 보정
 		System.out.println("개수 입력");
 		m = selectNumber();
 		if(menu.get(n) != null) {
 			if(menu.get(n).getQuantitiy()-m >= 0) {
-				income += menu.get(n).getPrice()*m; // 수입이 가격*판매갯수 만큼 오른다.
-				int left = menu.get(n).getQuantitiy() - m; // 기존의 quantity에서 m만큼 뺀 값이 남는값이다.
-				menu.get(n).setQuantitiy(left); // 남는값을 다시 set
+				income += menu.get(n).getPrice() * m; // 수입 계산
+				int left = menu.get(n).getQuantitiy() - m; // 개수 계산
+				menu.get(n).setQuantitiy(left);
 			}
 			else {
-				errMessage(QUANTITY_ERROR);
+				errMessage(FoodTruckCode.QUANTITY_ERROR);
 				orderMenu();
 			}
 		}
 		else {
-			errMessage(NUMBER_ERROR); // 
+			errMessage(FoodTruckCode.NUMBER_ERROR);
 			orderMenu();
 		}
 	}
@@ -79,13 +80,14 @@ public class FoodTruck implements Errorcode {
 		System.out.println("추가할 메뉴의 개수를 입력하세요.");
 		int q = selectNumber();
 		int result = addMenu(s,p,q);
-		if(result == 0) System.out.println("추가되었습니다.");
-		else if(result == QUANTITY_INPUT_ERROR) {
-			errMessage(QUANTITY_INPUT_ERROR);
+		
+		if(result == FoodTruckCode.NO_ERROR) System.out.println("추가되었습니다.");
+		else if(result == FoodTruckCode.QUANTITY_INPUT_ERROR) {
+			errMessage(FoodTruckCode.QUANTITY_INPUT_ERROR);
 			menuManagement();
 		}
-		else if(result == PRICE_ERROR) {
-			errMessage(PRICE_ERROR);
+		else if(result == FoodTruckCode.PRICE_ERROR) {
+			errMessage(FoodTruckCode.PRICE_ERROR);
 			menuManagement();
 		}
 		System.out.println();
@@ -101,18 +103,18 @@ public class FoodTruck implements Errorcode {
 		else {
 			System.out.println("오늘은 쉽니다.");
 		}
-		return; // 종료
+		return;
 	}
 	public void errMessage(int errNum) {
-		if(errNum == GENERAL_ERROR)
+		if(errNum == FoodTruckCode.GENERAL_ERROR)
 			System.out.println("잘못된 입력입니다. 재입력 해주세요. errorcode : -1");
-		else if(errNum == QUANTITY_ERROR)
+		else if(errNum == FoodTruckCode.QUANTITY_ERROR)
 			System.out.println("재고 오류, 재입력 해주세요 errorcode : -2");
-		else if(errNum == PRICE_ERROR)
+		else if(errNum == FoodTruckCode.PRICE_ERROR)
 			System.out.println("가격 오류. 재입력 해주세요 errorcode : -3");
-		else if(errNum == NUMBER_ERROR)
+		else if(errNum == FoodTruckCode.NUMBER_ERROR)
 			System.out.println("번호 오류. 재입력 해주세요. errorcode : -4");
-		else if(errNum == QUANTITY_INPUT_ERROR)
+		else if(errNum == FoodTruckCode.QUANTITY_INPUT_ERROR)
 			System.out.println("개수 오류. 재입력 해주세요. errorcode : -5");
 	}
 	public int addMenu(String menuName,int price,int quantity) { // 메뉴 추가
@@ -120,17 +122,17 @@ public class FoodTruck implements Errorcode {
 			if(quantity >0) {
 				Menu m = new Menu(menuName,price,quantity);
 				menu.add(m);
-				return 0;
+				return FoodTruckCode.NO_ERROR;
 			}
-			else return QUANTITY_INPUT_ERROR;
+			else return FoodTruckCode.QUANTITY_INPUT_ERROR;
 		} 
-		else return PRICE_ERROR;
+		else return FoodTruckCode.PRICE_ERROR;
 	}
 	public int costPriceCalculate() { // 원가계산
 		int cost = 0;
 		int leftQuantity;
 		for(int i=0;i<menu.size();i++) {
-			leftQuantity =(menu.get(i).getQuantitiy()*menu.get(i).getPrice())*30/100; //30%만큼의 폐기 손해
+			leftQuantity =(menu.get(i).getQuantitiy() * menu.get(i).getPrice()) * 30 / 100; //30%만큼의 폐기 손해
 			cost += leftQuantity;
 		}
 		return cost;
