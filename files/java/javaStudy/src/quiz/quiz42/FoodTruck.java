@@ -27,14 +27,14 @@ public class FoodTruck {
 						       break;
 					case 4: shutDownFoodTruck();
 							   break;
-					default: ErrorCode.errMessage(ErrorCode.GENERAL_ERROR);
+					default: ErrorCode.GENERAL_ERROR.printMessage();
 							   break;
 			}
 		}
 	}
 	private void showMenu() { // 메뉴 출력
 		if(menu.size() == 0) {
-			ErrorCode.errMessage(ErrorCode.QUANTITY_ERROR);
+			ErrorCode.QUANTITY_ERROR.printMessage();
 			System.out.println("메뉴 선택으로 돌아갑니다.");
 			System.out.println();
 			return;
@@ -51,12 +51,12 @@ public class FoodTruck {
 	}
 	private void orderMenu() { // 주문받기
 		if(menu.size() == 0) {
-			showMenu(); // 여기에 0일때 오류메세지 분기 있음
+			showMenu(); // 0일때 오류메세지 있음
 			return;
 		}
 		while(true) {
 			showMenu();
-			int productNumber,productQuantity;
+			int productNumber, productQuantity;
 			System.out.println("주문할 물건 번호 // 0 입력시 주문 취소.");
 			productNumber = selectNumber();
 			if(productNumber == 0) return;
@@ -73,9 +73,9 @@ public class FoodTruck {
 					menu.get(productNumber).setQuantitiy(left);
 					break;
 				}
-				else 	ErrorCode.errMessage(ErrorCode.QUANTITY_ERROR);
+				else 	ErrorCode.QUANTITY_ERROR.printMessage();
 			}
-			else 	ErrorCode.errMessage(ErrorCode.NUMBER_ERROR);
+			else 	ErrorCode.NUMBER_ERROR.printMessage();
 		}
 	}
 	private void menuManagement() { // 메뉴추가
@@ -86,18 +86,13 @@ public class FoodTruck {
 			int productPrice = selectNumber();
 			System.out.println("추가할 메뉴의 개수를 입력하세요.");
 			int productQuantity = selectNumber();
-			int result = addMenu(productName,productPrice,productQuantity);
+			ErrorCode result = addMenu(productName, productPrice, productQuantity);
 			
 			if(result == ErrorCode.NO_ERROR) {
 				System.out.println("추가되었습니다.");
 				return;
 			}
-			else if(result == ErrorCode.QUANTITY_INPUT_ERROR) {
-				ErrorCode.errMessage(ErrorCode.QUANTITY_INPUT_ERROR);
-			}
-			else if(result == ErrorCode.PRICE_ERROR) {
-				ErrorCode.errMessage(ErrorCode.PRICE_ERROR);
-			}
+			else result.printMessage(); // 에러가 있는 경우 해당 오류 출력
 			System.out.println();
 		}
 	}
@@ -112,7 +107,7 @@ public class FoodTruck {
 		else System.out.println("오늘은 쉽니다.");
 		return;
 	}
-	private int addMenu(String menuName,int price,int quantity) { // 메뉴 추가
+	private ErrorCode addMenu(String menuName,int price,int quantity) { // 메뉴 추가
 		if(price > 0) {
 			if(quantity >0) {
 				Menu m = new Menu(menuName,price,quantity);
