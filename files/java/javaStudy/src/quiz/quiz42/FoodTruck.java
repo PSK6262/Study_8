@@ -14,21 +14,21 @@ public class FoodTruck {
 			System.out.println("-----포장마차 오픈-----");
 			System.out.println("1. 메뉴 보기");
 			System.out.println("2. 주문 하기");
-			System.out.println("3. 재고 관리");
+			System.out.println("3. 메뉴 관리");
 			System.out.println("4. 마감 하기");
 			System.out.println("--------------------");
 			System.out.print("입력 : ");
 			switch(select = selectNumber()) {
 					case 1: showMenu();
-							   break;
+						break;
 					case 2: orderMenu();
-							   break;
+						break;
 					case 3: menuManagement();
-						       break;
+						break;
 					case 4: shutDownFoodTruck();
-							   break;
+						break;
 					default: ErrorCode.GENERAL_ERROR.printMessage();
-							   break;
+						break;
 			}
 		}
 	}
@@ -42,8 +42,8 @@ public class FoodTruck {
 		else {
 			System.out.println("--------------------");
 			for(int i=0;i<menu.size();i++) {
-				System.out.println((i+1)+"."+menu.get(i).getName()+" : "+menu.get(i).getPrice()+"원 // 재고"
-						+ menu.get(i).getQuantitiy()+"개");
+				System.out.println((i+1)+"."+menu.get(i).getName()+" : "+menu.get(i).getPrice()+"원 [재고 "
+						+ menu.get(i).getQuantitiy()+"개]");
 			}
 			System.out.println("--------------------");
 		}
@@ -57,13 +57,13 @@ public class FoodTruck {
 		while(true) {
 			showMenu();
 			int productNumber, productQuantity;
-			System.out.println("주문할 물건 번호 // 0 입력시 주문 취소.");
+			System.out.println("주문할 물건 번호 [ 0 입력시 주문 취소 ]");
 			productNumber = selectNumber();
 			if(productNumber == 0) return;
 			
 			productNumber = productNumber - 1; // index와 value의 차이 보정
 			if(productNumber >= 0 &&  productNumber < menu.size()) {
-				System.out.println("개수 입력 // 0 입력시 주문 취소.");
+				System.out.println("개수 입력  [ 0 입력시 주문 취소 ]");
 				productQuantity = selectNumber();
 				if(productQuantity == 0) return;
 				
