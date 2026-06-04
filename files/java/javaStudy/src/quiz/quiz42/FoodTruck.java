@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FoodTruck {
-	int income = 0;
-	ArrayList<Menu> menu = new ArrayList<>();
+	private static final Scanner SCANNER = new Scanner(System.in);
+	private int income = 0;
+	private ArrayList<Menu> menu = new ArrayList<>();
 	
-	public void openFoodTruck() { // 푸드트럭 오픈
+	public void openFoodTruck() { // 푸드트럭 오픈 , 외부에서 호출하기에 public
 		int select = 0;
 		while(select != 4) {
 			System.out.println("-----포장마차 오픈-----");
@@ -26,17 +27,17 @@ public class FoodTruck {
 						       break;
 					case 4: shutDownFoodTruck();
 							   break;
-					default: errMessage(FoodTruckCode.GENERAL_ERROR);
+					default: ErrorCode.errMessage(ErrorCode.GENERAL_ERROR);
 							   break;
 			}
 		}
 	}
-	public void showMenu() {
+	private void showMenu() { // 메뉴 출력
 		if(menu.size() == 0) {
-			errMessage(FoodTruckCode.QUANTITY_ERROR);
+			ErrorCode.errMessage(ErrorCode.QUANTITY_ERROR);
 			System.out.println("메뉴 선택으로 돌아갑니다.");
 			System.out.println();
-			openFoodTruck();
+			return;
 		} 
 		else {
 			System.out.println("--------------------");
@@ -48,51 +49,59 @@ public class FoodTruck {
 		}
 		System.out.println();
 	}
-	public void orderMenu() { // 주문받기
-		showMenu();
-		int n,m;
-		System.out.println("주문할 물건 번호");
-		n = selectNumber();
-		n = n-1; // index와 value의 차이 보정
-		System.out.println("개수 입력");
-		m = selectNumber();
-		if(menu.get(n) != null) {
-			if(menu.get(n).getQuantitiy()-m >= 0) {
-				income += menu.get(n).getPrice() * m; // 수입 계산
-				int left = menu.get(n).getQuantitiy() - m; // 개수 계산
-				menu.get(n).setQuantitiy(left);
-			}
-			else {
-				errMessage(FoodTruckCode.QUANTITY_ERROR);
-				orderMenu();
-			}
+	private void orderMenu() { // 주문받기
+		if(menu.size() == 0) {
+			showMenu(); // 여기에 0일때 오류메세지 분기 있음
+			return;
 		}
-		else {
-			errMessage(FoodTruckCode.NUMBER_ERROR);
-			orderMenu();
+		while(true) {
+			showMenu();
+			int productNumber,productQuantity;
+			System.out.println("주문할 물건 번호 // 0 입력시 주문 취소.");
+			productNumber = selectNumber();
+			if(productNumber == 0) return;
+			
+			productNumber = productNumber - 1; // index와 value의 차이 보정
+			if(productNumber >= 0 &&  productNumber < menu.size()) {
+				System.out.println("개수 입력 // 0 입력시 주문 취소.");
+				productQuantity = selectNumber();
+				if(productQuantity == 0) return;
+				
+				if(menu.get(productNumber).getQuantitiy() - productQuantity >= 0) {
+					income += menu.get(productNumber).getPrice() * productQuantity; // 수입 계산
+					int left = menu.get(productNumber).getQuantitiy() - productQuantity; // 개수 계산
+					menu.get(productNumber).setQuantitiy(left);
+					break;
+				}
+				else 	ErrorCode.errMessage(ErrorCode.QUANTITY_ERROR);
+			}
+			else 	ErrorCode.errMessage(ErrorCode.NUMBER_ERROR);
 		}
 	}
-	public void menuManagement() {
-		System.out.println("추가할 메뉴의 이름을 입력하세요.");
-		String s = selectString();
-		System.out.println("추가할 메뉴의 가격을 입력하세요.");
-		int p = selectNumber();
-		System.out.println("추가할 메뉴의 개수를 입력하세요.");
-		int q = selectNumber();
-		int result = addMenu(s,p,q);
-		
-		if(result == FoodTruckCode.NO_ERROR) System.out.println("추가되었습니다.");
-		else if(result == FoodTruckCode.QUANTITY_INPUT_ERROR) {
-			errMessage(FoodTruckCode.QUANTITY_INPUT_ERROR);
-			menuManagement();
+	private void menuManagement() { // 메뉴추가
+		while(true) {
+			System.out.println("추가할 메뉴의 이름을 입력하세요.");
+			String productName = selectString();
+			System.out.println("추가할 메뉴의 가격을 입력하세요.");
+			int productPrice = selectNumber();
+			System.out.println("추가할 메뉴의 개수를 입력하세요.");
+			int productQuantity = selectNumber();
+			int result = addMenu(productName,productPrice,productQuantity);
+			
+			if(result == ErrorCode.NO_ERROR) {
+				System.out.println("추가되었습니다.");
+				return;
+			}
+			else if(result == ErrorCode.QUANTITY_INPUT_ERROR) {
+				ErrorCode.errMessage(ErrorCode.QUANTITY_INPUT_ERROR);
+			}
+			else if(result == ErrorCode.PRICE_ERROR) {
+				ErrorCode.errMessage(ErrorCode.PRICE_ERROR);
+			}
+			System.out.println();
 		}
-		else if(result == FoodTruckCode.PRICE_ERROR) {
-			errMessage(FoodTruckCode.PRICE_ERROR);
-			menuManagement();
-		}
-		System.out.println();
 	}
-	public void shutDownFoodTruck() { // 문닫기
+	private void shutDownFoodTruck() { // 문닫기
 		if(income != 0) {
 			int cost = costPriceCalculate();
 			System.out.println("마감 완료");
@@ -100,51 +109,33 @@ public class FoodTruck {
 			System.out.println("폐기로 인한 손해 : "+cost);
 			System.out.println("총 벌어들인 금액 : "+(income-cost));
 		}
-		else {
-			System.out.println("오늘은 쉽니다.");
-		}
+		else System.out.println("오늘은 쉽니다.");
 		return;
 	}
-	public void errMessage(int errNum) {
-		if(errNum == FoodTruckCode.GENERAL_ERROR)
-			System.out.println("잘못된 입력입니다. 재입력 해주세요. errorcode : -1");
-		else if(errNum == FoodTruckCode.QUANTITY_ERROR)
-			System.out.println("재고 오류, 재입력 해주세요 errorcode : -2");
-		else if(errNum == FoodTruckCode.PRICE_ERROR)
-			System.out.println("가격 오류. 재입력 해주세요 errorcode : -3");
-		else if(errNum == FoodTruckCode.NUMBER_ERROR)
-			System.out.println("번호 오류. 재입력 해주세요. errorcode : -4");
-		else if(errNum == FoodTruckCode.QUANTITY_INPUT_ERROR)
-			System.out.println("개수 오류. 재입력 해주세요. errorcode : -5");
-	}
-	public int addMenu(String menuName,int price,int quantity) { // 메뉴 추가
+	private int addMenu(String menuName,int price,int quantity) { // 메뉴 추가
 		if(price > 0) {
 			if(quantity >0) {
 				Menu m = new Menu(menuName,price,quantity);
 				menu.add(m);
-				return FoodTruckCode.NO_ERROR;
+				return ErrorCode.NO_ERROR;
 			}
-			else return FoodTruckCode.QUANTITY_INPUT_ERROR;
+			else return ErrorCode.QUANTITY_INPUT_ERROR;
 		} 
-		else return FoodTruckCode.PRICE_ERROR;
+		else return ErrorCode.PRICE_ERROR;
 	}
-	public int costPriceCalculate() { // 원가계산
+	private int costPriceCalculate() { // 원가계산
 		int cost = 0;
-		int leftQuantity;
-		for(int i=0;i<menu.size();i++) {
-			leftQuantity =(menu.get(i).getQuantitiy() * menu.get(i).getPrice()) * 30 / 100; //30%만큼의 폐기 손해
-			cost += leftQuantity;
-		}
+		for(Menu m : menu)
+			cost +=(m.getQuantitiy() * m.getPrice()) * 30 / 100; //30%만큼의 폐기 손해
 		return cost;
 	}
-	public int selectNumber() {
-		Scanner scan = new Scanner(System.in);
-		int n = scan.nextInt();
-		return n;
+	private int selectNumber() { // 숫자 입력받기 , 예외처리 필요
+		int number = SCANNER.nextInt(); 
+		SCANNER.nextLine(); // 버퍼 제거
+		return number;
 	}
-	public String selectString() {
-		Scanner scan = new Scanner(System.in);
-		String s = scan.nextLine();
-		return s;
+	private String selectString() { // 문자열 입력받기
+		String string = SCANNER.nextLine();
+		return string;
 	}
 }
