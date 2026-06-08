@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <p>글자</p>
+    </div>
+
+    <div class="container">
+        <div class="box a" id="box-a-id">A</div>
+        <div class="box b">B</div>
+        <div class="box c">C</div>
+    </div>
+    <p id="target">text<span style="display: none">hidden</span></p>
+    <script>
+        const boxA = document.getElementById(`box-a-id`);
+        console.log(boxA);
+
+        const boxes = document.getElementsByClassName(`box`);
+        console.log(boxes);
+
+        // const cboxes = document.getElementsByClassName(`c`);
+        // console.log(cboxes); // 하나밖에 없어도 array로 return됨
+
+        //css 스타일
+        //단일 선택 querySelector
+        //다중 선택 querySelectorAll
+
+        const boxA_CSS = document.querySelector(`#box-a-id`); // id선택
+        console.log(boxA_CSS);
+        const boxes_CSS = document.querySelectorAll(`.box`);
+        console.log(boxes_CSS);
+
+        console.log(document.querySelectorAll(`.c`)[0]);
+
+        //선택 이후 js요소 활용
+        const p_target = document.getElementById(`target`);
+
+        console.log(p_target.textContent); // text 전부, hidden까지
+        console.log(p_target.innerText); // 보이는 text만
+        console.log(p_target.innerHTML); // html전부
+
+        //p_target.textContent = "js에서 접근해서 텍스트 수정";
+        p_target.innerHTML = "innerHTML 값 수정 <strong>스트롱</strong> 수정"
+    </script>
+</body>
+</html>
