@@ -10,6 +10,12 @@
             height:100px;
             border: 1px solid black;
         }
+        .back-red{
+            background-color: red;
+        }
+        .back-blue{
+            background-color: blue;
+        }
     </style>
 </head>
 <body>
@@ -26,6 +32,9 @@
             const colorSet = document.getElementById('box');
             if(result == 1){
                 colorSet.style.backgroundColor="red";
+                // class.setAttribute('class','back-red');
+                // box.classList.add('back-red');
+                // box.classList.remove('back-blue');
             }
             else if(result == 2){
                 colorSet.style.backgroundColor="blue";
