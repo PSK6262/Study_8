@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width:100px;
+            height:100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+    /* 코딩 부분 */
+        const box_event = document.getElementById('box');
+        box_event.onmouseover = () =>{
+            console.log("마우스 올라옴");
+        }
+        box_event.onclick = () =>{
+            console.log("클릭됨");
+        }
+    </script>
+</body>
+</html>
