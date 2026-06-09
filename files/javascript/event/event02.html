@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .blue{
+            color:blue;
+        }
+        .big-font{
+            font-size: 50px;
+        }
+    </style>
+</head>
+<body>
+    <p id="pid">text 글자 p태그 글자</p>
+    <a href="https://netflix.com" id="aid">넷플릭스로 이동하기</a>
+    <div id="container">
+        <p>기존에 존재하는 p태그</p>
+    </div>
+    <script>
+        // node.classList / .add .remove .toggle 클래스 조작
+        const p_pid = document.getElementById('pid');
+        p_pid.classList.add('red');
+        p_pid.classList.add('blue');
+        p_pid.addEventListener('click',()=>{
+            p_pid.classList.toggle('big-font');
+        })
+        // .getAttribute .setAttribute .removeAttribute 속성 조작
+        p_pid.getAttribute('class');
+
+        const a_aid = document.getElementById('aid');
+        console.log(a_aid.getAttribute('href'));
+        a_aid.setAttribute('href','https://tving.com');
+        a_aid.setAttribute('target','_blank');
+        a_aid.removeAttribute('target');
+
+        const divCon = document.getElementById('container');
+
+        const newP = document.createElement("p");
+        const txtNode = document.createTextNode("p태그 내부 글씨");
+        const attrNode = document.createAttribute("class");
+        attrNode.value = "red";
+
+        // <p></p>
+        newP.appendChild(txtNode);
+        // <p>p태그 내부 글씨</p>
+        newP.setAttributeNode(attrNode);
+        // <p class="red">p태그 내부 글씨</p>
+        divCon.appendChild(newP);
+        // div container에 새로만든 p태그 요소 추가
+
+        /*
+            순수 javascript
+            JQuery
+            React
+
+            javascript
+            divCon.innerHTML = '<p class="red">p태그 내부 글씨</p>';
+            
+            jQuery
+            $('#container').append('<p class="red">p태그 내부 글씨</p>');
+
+            React
+            ... 나중에
+        */
+    </script>
+</body>
+</html>
