@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width:100px;
+            height:100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <button id="btn1" onclick="btn_click()">배경색 바꾸기</button>
+    <script>
+        
+        function btn_click(){
+            let result = prompt(`1 또는 2를 입력하세요. 1:빨간색, 2:파란색`);
+            changeColor(result);
+        }
+        
+        function changeColor(result){
+            const colorSet = document.getElementById('box');
+            if(result == 1){
+                colorSet.style.backgroundColor="red";
+            }
+            else if(result == 2){
+                colorSet.style.backgroundColor="blue";
+            }
+            else{
+                alert(`잘못 입력했습니다.`);
+            }
+        }
+    </script>
+</body>
+</html>
