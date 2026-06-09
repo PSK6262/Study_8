@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <input type="text" id="input_text">
+    </form>
+    <script>
+        const input_text = document.getElementById('input_text');
+
+        input_text.addEventListener('keydown',(eventInfo)=>{
+            console.log("keydown 실행됨");
+            console.log(eventInfo);
+
+            if(eventInfo.keyCode == 13){ // 조만간 사라질 가능성 있으니 쓰지말기
+                console.log('keyCode 13 엔터키 눌림');
+            }
+            if(eventInfo.key == 'Enter'){
+                console.log('key == Enter 엔터키 눌림');
+            }
+            if(eventInfo.key == 'q'){
+                location.href = "https://coupang.com";
+            }
+        })
+        // keypress deprecated
+        input_text.addEventListener('keyup',()=>{
+            console.log('keyup 이벤트 발생');
+        })
+        input_text.addEventListener('focus',()=>{
+            console.log('focus 이벤트 발생');
+        })
+        
+        input_text.addEventListener('blur',()=>{ // focus 풀릴 때
+            console.log('blur 이벤트 발생');
+        })
+    </script>
+</body>
+</html>
