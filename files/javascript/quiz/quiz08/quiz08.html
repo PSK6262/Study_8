@@ -6,6 +6,44 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form id="form_1" action="">
+        <input type="text" id="loginId" placeholder="아이디"><br>
+        <input type="password" id="loginPw" placeholder="비밀번호"><br>
+        <button id="btnLogin" onclick="tryLogin(event)">로그인 시도</button><br>
+    </form>
+    <script>
+        const login_id = document.getElementById('loginId');
+        const login_pw = document.getElementById('loginPw');
+        const btn_login = document.getElementById('btnLogin');
+        login_id.addEventListener('keydown',(event)=>{
+            if(event.key == 'Enter'){
+                login_pw.focus();
+            }
+        })
+        login_pw.addEventListener('keydown',(event)=>{
+            if(event.key == 'Enter'){
+                if(login_id.value.trim() == '' || login_pw.value.trim()== ''){
+                    return;
+                }
+                else{
+                    document.getElementById('form_1').submit();
+                }
+            }
+        })
+        function tryLogin(event){
+            event.preventDefault();
+            if(login_id.value.trim() == ''){
+                login_id.focus();
+                alert(`아이디를 입력 해 주세요`);
+                return;
+            }
+            if(login_pw.value.trim() == ''){
+                login_pw.focus();
+                alert(`비밀번호를 입력 해 주세요`);
+                return;
+            }
+            document.getElementById('form_1').submit();
+        }
+    </script>
 </body>
 </html>
