@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    /* 필요시 작성 */
+    .background-gray{
+        background-color: gray;
+    }
+    .textcolor-red{
+        color:red;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="main">
+            <p id="p1">p1 텍스트</p>
+            <p id="p2">p2 텍스트</p>
+        </div>
+    </div>
+    <button onclick="changeMain()">main 배경색 gray로 변경</button>
+    <button onclick="changeP1()">p1 글자색 red로 변경</button>
+    <button onclick="changeP2()">"p2 텍스트"를 "p2 글자" 로 변경</button>
+    <button onclick="changeMain_2()">main 배경색을 white로 변경하기</button>
+    <button onclick="changeP1_2()">p1 글자색을 black로 변경하기</button>
+    <script>
+    /* 코드 작성 부분 */
+    function changeMain(){
+        const main = document.getElementById('main');
+        main.classList.add('background-gray');
+    }
+    function changeP1(){
+        const p1 = document.getElementById('p1');
+        p1.classList.add('textcolor-red');
+    }
+    function changeP2(){
+        const p2 = document.getElementById('p2');
+        p2.innerText = "p2 글자";
+    }
+    function changeMain_2(){
+        const main = document.getElementById('main');
+        main.classList.remove('background-gray');
+    }
+    function changeP1_2(){
+        const p1 = document.getElementById('p1');
+        p1.classList.remove('textcolor-red');
+    }
+    </script>
+</body>
+</html>
