@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>form01</h1>
+    <form id="form_id" action="" method="">
+        <label>아이디 : <input type="text" id="input_id" placeholder="ID 입력"></label>
+        <br><br>
+        <label>비밀번호 : <input type="password" id="input_pw" placeholder="PW 입력"></label>
+        <button type="submit" id="btn_submit">로그인</button>
+        <button type="button" id="btn_normal">그냥버튼</button>
+        <br><br>
+        <button type="button" id="btn_extra">extra버튼</button>
+    </form>
+    <script>
+        const input_id = document.getElementById('input_id');
+        const input_pw = document.getElementById('input_pw');
+        
+        const btn_submit = document.getElementById('btn_submit');
+        const btn_normal = document.getElementById('btn_normal');
+        const btn_extra = document.getElementById('btn_extra');
+
+        btn_normal.addEventListener('click',()=>{
+            console.log( input_id.value);
+            console.log( input_pw.value);
+            
+            input_id.value = 'valuevalue';
+        })
+        input_id.addEventListener('focus',()=>{
+            console.log('input_id 요소에 focus 잡힘');
+        })
+        input_pw.addEventListener('focus',()=>{
+            console.log('input_pw 요소에 focus 잡힘');
+        })
+        btn_extra.addEventListener('click',()=>{
+            btn_normal.click(); // btn_normal 클릭한 효과
+            input_pw.focus(); // input_pw요소에 focus
+
+            //submit() , form의 submit을 발생시킨다
+        })
+
+        input_id.addEventListener('keydown',(event)=>{
+            console.log(event.key);
+            //input_id에서 엔터키 입력시 비밀번호로 focus 바꾸기
+            if(event.key == 'Enter'){
+                // 일반적으론 enter 입력시 form의 submit을 발새이킨다.
+                event.preventDefault(); // 기존 작동인 submit event를 중지
+                input_pw.focus();
+            }
+        })
+        document.getElementById('form_id').addEventListener('submit',(event)=>{
+            //비밀번호 입력 X일시 submit되지 않고 alert창 띄우기
+            //submit event -> 처리되는 주체가 form임
+            //action 페이지 정보 없으면 현재경로(새로고침)
+            //form action="속성값" -> 요청하는 경로 , "" -> 현재경로
+            console.log("form submit이 발생함");
+            event.preventDefault();
+            if(input_id.value.trim() == ''){ // 아이디 미입력
+                alert('아이디를 입력 해 주세요');
+                input_id.value="";
+                input_id.focus();
+                return;
+            }
+            if(input_pw.value.trim() == ''){ // 아이디 미임력
+                alert('비밀번호를 입력 해 주세요');
+                input_pw.focus();
+                return;
+            }
+            if(input_pw.value.trim().length < 8){
+                alert('비밀번호 8자리 이상'); // 회원가입쪽 미리
+                return;
+            }   
+            document.getElementById('form_id').submit(); // 다 검증되면 submit
+        })
+    </script>
+</body>
+</html>
