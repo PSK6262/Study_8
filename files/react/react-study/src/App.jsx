@@ -4,13 +4,14 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import State02 from './components/State02'
+import State03 from './components/State03'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     //<Quiz01/>
-    <State02/>
+    <State03/>
   )
 }
 
