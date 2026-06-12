@@ -3,14 +3,14 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import Export01 from './components/Export01'
-import Quiz01 from './quiz/Quiz01'
+import State02 from './components/State02'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Quiz01/>
+    //<Quiz01/>
+    <State02/>
   )
 }
 
