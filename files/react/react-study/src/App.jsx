@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import Props01 from './components/Props01'
+import Quiz02 from './quiz/Quiz02'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +11,8 @@ function App() {
   return (
     //<Quiz01/>
     //<State03/>
-    <Props01/>
+    //<Props01/>
+    <Quiz02/>
   )
 }
 
