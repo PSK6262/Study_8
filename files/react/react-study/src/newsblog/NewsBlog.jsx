@@ -11,7 +11,6 @@ function NewsBlog(){
 
     let [news, setNews] = useState(['어제의 뉴스','오늘의 뉴스','내일의 뉴스']);
     let [likeCount, setLikeCount] = useState(0);
-
     let [modalFlag, setModalFlag] = useState(false);
 
     return(

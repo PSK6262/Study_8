@@ -3,18 +3,13 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import NewsBlog from './newsblog/NewsBlog'
+import NewsBlog_QUIZ from './quiz/quiz04/NewsBlog_QUIZ.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    //<Quiz01/>
-    //<State03/>
-    //<Props01/>
-    //<Quiz02/>
-    //<Props02/>
-    <NewsBlog/>
+    <NewsBlog_QUIZ/>
   )
 }
 
