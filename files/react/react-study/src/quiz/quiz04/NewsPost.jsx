@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "../../newsblog/Modal";
+import Modal from "../quiz04/Modal.jsx";
 function NewsPost(props){
     let [likeCount, setLikeCount] = useState(0);
     let [modalFlag, setModalFlag] = useState(false);
@@ -15,7 +15,7 @@ function NewsPost(props){
                 <p>내용 무</p>
             </div>
             {
-                modalFlag == true ? <Modal/> : null
+                modalFlag == true ? <Modal title={props.title}/> : null
             }
         </>
     )

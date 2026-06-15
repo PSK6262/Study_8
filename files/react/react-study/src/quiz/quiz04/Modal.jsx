@@ -1,8 +1,8 @@
-function Modal(){
+function Modal(props){
+    
     return(
         <div className="modal">
-            <h3>제목</h3>
-            <p>날짜</p>
+            <h3>{props.title}</h3>
             <p>상세내용</p>
         </div>
     )
