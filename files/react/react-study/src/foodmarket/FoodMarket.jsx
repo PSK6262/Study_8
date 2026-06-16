@@ -1,3 +1,4 @@
+import './FoodMarket.css'
 function FoodMarket(){
     return(
         <div>
