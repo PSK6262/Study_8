@@ -5,12 +5,13 @@ import heroImg from './assets/hero.png'
 import './App.css'
 import NewsBlog_QUIZ from './quiz/quiz04/NewsBlog_QUIZ.jsx'
 import Quiz05 from './quiz/quiz05/Quiz05.jsx'
+import Quiz06 from './quiz/quiz06/Quiz06.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Quiz05/>
+    <Quiz06/>
   )
 }
 
