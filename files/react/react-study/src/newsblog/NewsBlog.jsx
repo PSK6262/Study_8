@@ -100,16 +100,15 @@ function NewsBlog() {
             }}/>
             <button onClick={()=>{
                 if(inputText.trim() != ''){
-                    let temp = [...news];
-                    temp.push(inputText);
+                    let temp = [...news , inputText];
                     setNews(temp);
                     setInputText('');
 
-                    let temp2 = [...likeCountArr];
-                    temp2.push(0);
+                    let temp2 = [...likeCountArr , 0];
                     setLikeCountArr(temp2);
                 } else {
                     alert(`제대로 입력해 주세요`);
+                    return;
                 }
             }}>발행</button>
         </div>
