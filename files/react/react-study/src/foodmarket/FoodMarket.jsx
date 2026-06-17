@@ -1,50 +1,47 @@
 import './FoodMarket.css'
 
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-import {Button, Spinner, Container, Nav , Navbar , Card} from 'react-bootstrap';
-import banner_bg from './img/banner_bg.jpg'; 
+import {Button, Container, Nav , Navbar , Card} from 'react-bootstrap';
+import { Routes , Route , Link , useNavigate } from 'react-router';
+import CustomerService from './pages/CustomerService.jsx';
+import Home from './pages/Home.jsx';
 import foodsData from './data/foodsData.js';
-import FoodCard from './FoodCard.jsx'
+import { useState } from 'react';
 
 function FoodMarket(){
+    let [foods, setFoods] = useState(foodsData);
+
+    // react-router
+    // Link to = 주소
+    // navigate(주소) *
+
+    let navigate = useNavigate();
+
+
     return(
         <div>
             <Navbar bg="light" data-bs-theme="light">
                 <Container>
-                <Navbar.Brand href="#home">FoodMarket</Navbar.Brand>
+                <Navbar.Brand onClick={()=>{navigate("/")}}>FoodMarket</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    {/* <Nav.Link href="#home"><Link to="/">Home</Link></Nav.Link> // 얘들은 페이지 자체가 이동 
+                    <Nav.Link href="#features"><Link to="/detail">FoodDetail</Link></Nav.Link> */}
+                    <Nav.Link onClick={()=>{navigate("/")}}>Home</Nav.Link>
+                    <Nav.Link onClick={()=>{navigate("detail")}}>FoodDetail</Nav.Link>
+                    <Nav.Link onClick={()=>{navigate("/info")}}>Info</Nav.Link>
+                    <Nav.Link onClick={()=>{navigate("/help")}}>고객센터</Nav.Link>
+                    {/* <Nav.Link href="/info">Info</Nav.Link> // 이 두가지는 사실상 새로 그리기 
+                    <Nav.Link href="/help">고객센터</Nav.Link> */}
                 </Nav>
                 </Container>
             </Navbar>
-            <div className="main-bg"></div>
-                <Container>
-                    <Row>
-                        {
-                            foodsData.map((value,index)=>{
-                                return(
-                                    <Col md={4} sm={2}>
-                                        <FoodCard arr={foodsData} idx={index}/>
-                                    </Col>
-                                )
-                            })
-                        }
-                    </Row>
-                </Container>
+            <Routes>
+                <Route path="/" element={<Home args = {foods}/>}></Route>
+                <Route path="/help" element={<CustomerService/>}></Route>
+                <Route path="/detail" element={<div><h1>detail page</h1></div>}></Route>
+                <Route path="/info" element={<div><h1>info page</h1></div>}></Route>
+                <Route path="/*" element={<div><h1>잘못된 접근입니다</h1></div>}></Route>
+            </Routes>
         </div>
-        // {
-        //     /* 
-        //         이미지 사용
-        //         react 컴포넌트에서 시미지 사용시 , import -> 사용
-        //         <img src=""/> 이거안씀
-        //         <img src={import한 이미지}/> 이렇게 쓴다.
-        //     */ 
-        // //    <img src={}/>
-        // }
     )
 }
 export default FoodMarket
