@@ -28,7 +28,7 @@ function Quiz06(){
             {
                 boxArr.map((item,index)=>{
                     return(
-                        <Box color={boxArr[index]} func={setBoxArr} param ={boxArr} index={index}/>
+                        <Box color={boxArr[index]}/>
                     )
                 })
             }
