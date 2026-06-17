@@ -1,6 +1,6 @@
 
 import {Button, Navbar , Card} from 'react-bootstrap';
-
+import { useNavigate } from 'react-router';
 
 
 /*
@@ -15,6 +15,7 @@ import {Button, Navbar , Card} from 'react-bootstrap';
 function FoodCard(props){
     let foodsData = props.arr;
     let index = props.idx;
+    let navigate = useNavigate();
     return(
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src="holder.js/100px180" src={foodsData[index].imgPath}/>
@@ -22,7 +23,9 @@ function FoodCard(props){
                 <Card.Title>{foodsData[index].title}</Card.Title>
                 <Card.Text>{foodsData[index].content}</Card.Text>
                 <Card.Text>{foodsData[index].price+"원"}</Card.Text>
-                <Button variant="primary">상세 보기</Button>
+                <Button variant="primary" onClick={()=>{
+                    navigate("/detail/"+foodsData[index].id);
+                }}>상세 보기</Button>
             </Card.Body>
         </Card>
     )

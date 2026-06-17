@@ -6,6 +6,7 @@ import CustomerService from './pages/CustomerService.jsx';
 import Home from './pages/Home.jsx';
 import foodsData from './data/foodsData.js';
 import { useState } from 'react';
+import Detail from './pages/Detail.jsx';
 
 function FoodMarket(){
     let [foods, setFoods] = useState(foodsData);
@@ -35,8 +36,9 @@ function FoodMarket(){
                 </Container>
             </Navbar>
             <Routes>
-                <Route path="/" element={<Home args = {foods}/>}></Route>
+                <Route path="/" element={<Home foods = {foods}/>}></Route>
                 <Route path="/help" element={<CustomerService/>}></Route>
+                <Route path="/detail/:id" element={<Detail foods = {foods}/>}></Route>
                 <Route path="/detail" element={<div><h1>detail page</h1></div>}></Route>
                 <Route path="/info" element={<div><h1>info page</h1></div>}></Route>
                 <Route path="/*" element={<div><h1>잘못된 접근입니다</h1></div>}></Route>

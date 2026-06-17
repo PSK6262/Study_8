@@ -2,7 +2,7 @@ import { Container , Row , Col } from 'react-bootstrap';
 import banner_bg from '../img/banner_bg.jpg'; 
 import FoodCard from '../FoodCard.jsx'
 
-function Home({args : foods}){
+function Home({foods}){
     return(
         <>
             <div className="main-bg"></div>
@@ -11,8 +11,8 @@ function Home({args : foods}){
                     {
                         foods.map((food,index)=>{
                             return(
-                                <Col md={4} sm={2}>
-                                    <FoodCard arr={foods} idx={index} key={index}/>
+                                <Col md={4} sm={2} key={index}>
+                                    <FoodCard arr={foods} idx={index}/>
                                 </Col>
                             )
                         })
