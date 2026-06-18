@@ -1,6 +1,27 @@
 import { Container, Row, Col , Button } from "react-bootstrap";
 import { Navigate, useNavigate, useParams } from "react-router";
+import { useState , useEffect } from "react";
 function Detail({foods}){
+
+    let [orderCount, setOrderCount] = useState(0);
+    let [test,setTest] = useState(0);
+
+    useEffect(()=>{
+        console.log('useEffect 함수 실행 (의존성 배열 없음)');
+    }) // 의존성 배열 없으면 로딩마다 실행
+    useEffect(()=>{
+        console.log('useEffect 함수 실행 [] 빈배열 의존');
+    },[]) // 빈배열 // 생성 or 로딩시 1회만
+    useEffect(()=>{ // orderCount가 바뀌면 실행
+        console.log('useEffect 함수 실행 [orderCount] 의존성 배열');
+        console.log('useEffect[orderCount] : ' + orderCount);
+    },[orderCount])
+    useEffect(()=>{ // test가 바뀌면 실행
+        console.log('useEffect 함수 실행 [test] 의존성 배열');
+    },[test])
+    useEffect(()=>{ // orderCount랑 test 둘중 하나가 바뀌면 실행됨
+        console.log('useEffect 함수 실행 [test , orderCount] 의존성 배열');
+    },[test , orderCount])
 
     // 접속 path = /detail/:id
     // ex) /detail/fd000
@@ -34,9 +55,15 @@ function Detail({foods}){
                         <p>{foods[food_idx].content}</p>
                         <p>{foods[food_idx].price}</p>
                         <p>
-                            <Button variant="dark">-</Button>
-                            <span> 0 </span>
-                            <Button variant="dark">+</Button>
+                            <Button variant="dark" onClick={()=>{
+                                setOrderCount(orderCount-1)
+                                console.log('onClick() : ' + orderCount);    
+                            }}>-</Button>
+                            <span> {orderCount} </span>
+                            <Button variant="dark" onClick={()=>{
+                                setOrderCount(orderCount+1)
+                                console.log('onClick() : ' + orderCount);
+                            }}>+</Button>
                         </p>
                     </Col>
                 </Row>
