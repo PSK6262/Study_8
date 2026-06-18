@@ -42,8 +42,8 @@ function Detail({foods}){
         },2000);
     },[])
     // 누적으로 쌓이면 문제되는 코드 -> clean up 으로 처리
-    const iv = useEffect(()=>{
-        setInterval(() => {
+    useEffect(()=>{
+        const iv = setInterval(() => {
             console.log('interval');
         }, 1000);
 
@@ -61,6 +61,10 @@ function Detail({foods}){
     })
 
     let navigate = useNavigate();
+                    
+    let stock_Count = foods[food_idx].stockCount == 0 ? '품절' : '주문하기';
+                    
+
     if(food_idx == -1){
         return(
             <div>
@@ -82,16 +86,20 @@ function Detail({foods}){
                     <p>{foods[food_idx].price}</p>
                     <p>
                         <Button variant="dark" onClick={()=>{
-                            setOrderCount(orderCount-1)
-                            console.log('onClick() : ' + orderCount);    
+                            if(orderCount >= 1) {
+                                setOrderCount(orderCount-1)
+                                console.log('onClick() : ' + orderCount);
+                            }    
                         }}>-</Button>
                         <span> {orderCount} </span>
                         <Button variant="dark" onClick={()=>{
-                            setOrderCount(orderCount+1)
-                            console.log('onClick() : ' + orderCount);
+                            if(orderCount < foods[food_idx].stockCount){
+                                setOrderCount(orderCount+1)
+                                console.log('onClick() : ' + orderCount);
+                            }
                         }}>+</Button>
                     </p>
-                    <Button variant="primary">주문하기</Button>
+                    <Button variant="primary">{stock_Count}</Button>
                 </Col>
             </Row>
         <Modal
