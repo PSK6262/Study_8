@@ -56,16 +56,16 @@ function Detail({foods}){
     let { id } = useParams();
     // 경로상 :id 였어서 id로 받는다
 
-    let food_idx = foods.findIndex((item)=>{
+    let food = foods.find((item)=>{
         return item.id == id;
     })
 
     let navigate = useNavigate();
                     
-    let stock_Count = foods[food_idx].stockCount == 0 ? '품절' : '주문하기';
+    let stock_Count = food.stockCount == 0 ? '품절' : '주문하기';
                     
 
-    if(food_idx == -1){
+    if(food == undefined || food == null){
         return(
             <div>
                 <h1>존재하지 않는 상품입니다.</h1>
@@ -73,17 +73,61 @@ function Detail({foods}){
                 <Button variant="dark" onClick={()=>{navigate("/")}}>홈으로 돌아가기</Button>
             </div>
         )
-    } 
+    }
+    //스타일 적용
+    /*
+        가격표시
+        만원 이상 -> 빨간색
+        만원 미만 -> 파란색
+
+        1) js 객체
+        <p style={{color:'red},fontSize:'20px'}>{food.price}</p>
+    // const priceTextStyle = {
+    //     color: food.price < 10000 ? 'blue' : 'red'
+    // }
+        2) js 함수
+    */
+        // const priceTextStyleFunc = (price)=>{
+        //     if(price < 10000) return {color:'blue'}
+        //     else return {color:'red'}
+        // }
+    // 여기까지
+
+    const priceTextClassName = (food.price < 10000 ? 'price-blue' : 'price-red');
+    //배열단위처리 + join도 가능
+    //['text-strong','price-red'].join(" ") // -> 'text-strong price-red' 중간에 공백을 넣고 이어줌
+
+    // 객체사용 방법
+    const styles = {
+        redStyle : {color: 'red'},
+        blueStyle : {color: 'blue'},
+        FontBigBold : {
+            FontSize : '36px',
+            fontWeight : 'bold'
+        },
+        titleStyle : {
+            paddingTop:'30px',
+            fontSize:'40px',
+            fontWeight:'bold'
+        }
+    }
+    
+    
     return(
         <Container className={"start " + viewStatus}>
             <Row>
                 <Col md={6}>
-                    <img src={foods[food_idx].imgPath} style={{width:"100%"}}/>
+                    <img src={food.imgPath} style={{width:"100%"}}/>
                 </Col>
                 <Col md={6}>
-                    <h4>{foods[food_idx].title}</h4>
-                    <p>{foods[food_idx].content}</p>
-                    <p>{foods[food_idx].price}</p>
+                    {/* <h4>{food.title}</h4> */}
+                    <h4 style={styles.titleStyle}>{food.title}</h4>
+                    {/* <p>{food.content}</p> */}
+                    <p style={styles.FontBigBold}>{food.content}</p>
+                    {/* <p>{food.price}</p> */}
+                    {/* <p style={priceTextStyleFunc(food.price)}>{food.price}</p> */}
+                    {/* <p className={`text-strong ${priceTextClassName}`}>{food.price}</p> */}
+                    <p className={['text-strong',priceTextClassName].join(" ")}>{food.price}</p>
                     <p>
                         <Button variant="dark" onClick={()=>{
                             if(orderCount >= 1) {
@@ -93,7 +137,7 @@ function Detail({foods}){
                         }}>-</Button>
                         <span> {orderCount} </span>
                         <Button variant="dark" onClick={()=>{
-                            if(orderCount < foods[food_idx].stockCount){
+                            if(orderCount < food.stockCount){
                                 setOrderCount(orderCount+1)
                                 console.log('onClick() : ' + orderCount);
                             }
