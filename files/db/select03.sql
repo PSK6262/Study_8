@@ -35,7 +35,7 @@ from professor
 where deptno = 101
 order by 2;
 
---교집함
+--교집함 (잘 안씀)
 
 select *
 from student
@@ -45,7 +45,7 @@ select *
 from student
 where deptno2 = 201;
 
--- 차집합
+-- 차집합 (잘 안씀)
 -- 상을 주려고 한다.
 select *
 from emp
