@@ -22,8 +22,8 @@ select name,
        substr(tel, 1, instr(tel,')')) ||
        rpad('*', instr(tel,'-') - instr(tel,')') - 1 ,'*') ||
        substr(tel, instr(tel,'-')) as replace2
-       -- 총 길이에서 -까지의 길이를 뺀 값이 뒷자리 번호의 길이 a = length(tel) - instr(tel,'-')
-       -- )까지의 길이가 앞자리 번호의 길이 b = instr(tel,')')
+       -- 총 길이에서 - 까지의 길이를 뺀 값이 뒷자리 번호의 길이 a = length(tel) - instr(tel,'-')
+       -- ) 까지의 길이가 앞자리 번호의 길이 b = instr(tel,')')
        -- 전체 길이에서 (a+b)를 빼면 => 중간 번호의 길이는 instr(tel,'-') - instr(tel,')')
 from student;
 
