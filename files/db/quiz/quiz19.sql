@@ -14,7 +14,7 @@ select p.name
      , p.hiredate
      , (select d.dname
         from department d
-        where p.deptno = d.deptno)
+        where p.deptno = d.deptno) as dname
 from professor p
 where hiredate > (select hiredate
                   from professor
