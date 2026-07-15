@@ -45,4 +45,4 @@ from student s1
                 group by grade) s2
         on s1.grade = s2.grade
 where s1.height > s2.avh
-order by grade;
+order by s1.grade;
