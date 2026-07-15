@@ -147,7 +147,7 @@ from (select empno as e1
       
 select *
 from emp2 a 
-    inner join (select emp_type , avg(pay) as avg_pay
+    inner join (select emp_type , trunc(avg(pay)) as avg_pay
                from emp2
                group by emp_type) b
 on a.emp_type = b.emp_type
