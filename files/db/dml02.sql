@@ -192,3 +192,23 @@ when matched then
     update set a.sales_income = b.sales_income
 when not matched then
     insert values (b.work_date,b.store_code,b.sales_income , 'C');
+
+select * from t_company_type;
+
+select *
+from t_company_type
+where store_type = 'S';
+
+select store_type 
+     , store_code
+     , sum(sales_income)
+from t_company_type
+group by store_type , store_code
+order by store_type , store_code;
+
+
+select store_type 
+     , store_code
+     , sum(sales_income)
+from t_company_type
+group by rollup(store_type , store_code);
