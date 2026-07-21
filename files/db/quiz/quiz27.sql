@@ -13,7 +13,7 @@ INSERT INTO product_quiz VALUES (5, 'C3000010', 30000);
 INSERT INTO product_quiz VALUES (6, 'K1000023', 17000);
 
 select trunc(price,-4) as price_group
-     , count(trunc(price,-4)) as products
+     , count(trunc(price,-4)) as product
 from product_quiz
 group by trunc(price,-4)
 order by trunc(price,-4);
