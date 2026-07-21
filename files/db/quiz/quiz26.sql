@@ -46,6 +46,10 @@ when matched then
 when not matched then
     insert values (d.create_date,'N','Y');
     
+    
+insert into table_data_1 values (5, '2023-04-05');
+insert into table_data_1 values (6, '2023-04-06');
+insert into table_data_2 values (5, '2023-04-07');
 select *
 from table_colc
 order by std_date;
