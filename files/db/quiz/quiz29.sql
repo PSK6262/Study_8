@@ -27,19 +27,7 @@ insert into t_member_point values (t_member_point_pk_seq.nextval
                                  , 'A'
                                  , 70
                                  , sysdate);
-insert into t_member_point values (t_member_point_pk_seq.nextval
-                                 , (select count(*)+1
-                                    from t_member_point
-                                    where 'B' = member_id)
-                                 , 'B'
-                                 , 95
-                                 , sysdate);
-insert into t_member_point values (t_member_point_pk_seq.nextval
-                                 , (select count(*)+1
-                                    from t_member_point
-                                    where 'C' = member_id)
-                                 , 'C'
-                                 , 60
-                                 , sysdate);
                                  
 select * from t_member_point;
+
+select * from dept;

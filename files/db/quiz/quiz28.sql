@@ -24,3 +24,6 @@ insert into T_ITEM_LIST values (
             sysdate );
 
 select * from T_ITEM_LIST;
+
+delete from t_item_list;
+truncate table t_item_list;
