@@ -1,4 +1,4 @@
-package db.quiz.quiz01;
+package db.v2;
 
 public class Product {
 	private int p_code;

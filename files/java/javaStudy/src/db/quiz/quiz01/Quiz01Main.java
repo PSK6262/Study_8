@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import db.v1.Dept;
-
 public class Quiz01Main {
 	static Connection conn = null;
 	static ResultSet rs = null;
