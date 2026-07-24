@@ -104,13 +104,23 @@ public class DeptDAO {
 		return result;
 	}
 	public int removeDept(Dept dept) {
+		return removeDept(dept.getDeptno());
+	}
+	//Update
+	public int modifyDept(Dept dept) {
 		Connection conn = DBConnectionManager.connectDB();
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sqlQuery = " delete from dept where deptno = ? ";
+		String sqlQuery = """
+				update dept
+				set dname = ? , loc = ?
+				where deptno = ? 
+				""";
 		try {
 			pstmt = conn.prepareStatement(sqlQuery);
-			pstmt.setInt(1, dept.getDeptno());
+			pstmt.setString(1, dept.getDname());
+			pstmt.setString(2, dept.getLoc());
+			pstmt.setInt(3, dept.getDeptno());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
