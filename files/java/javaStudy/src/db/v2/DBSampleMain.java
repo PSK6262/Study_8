@@ -16,5 +16,11 @@ public class DBSampleMain {
 			for(Product p : productList) {
 				System.out.println(p.toString());
 			}
+		//System.out.println(deptDAO.saveDept3(4009, "a",1000,"b"));
+		//System.out.println(deptDAO.saveDept(80, "a","b"));
+		
+//		Dept saveDept1 = new Dept(191,"Adv","Busan");
+//		System.out.println(deptDAO.saveDept(saveDept1));
+		System.out.println(deptDAO.removeDept(80));
 	}
 }

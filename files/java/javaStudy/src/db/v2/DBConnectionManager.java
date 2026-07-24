@@ -35,5 +35,12 @@ public class DBConnectionManager {
 			e.printStackTrace();
 		}
 	}
-	
+	public static void disconnectDB(Connection conn , PreparedStatement pstmt) {
+		try {
+			if(conn != null) conn.close();
+			if(pstmt!= null) pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
