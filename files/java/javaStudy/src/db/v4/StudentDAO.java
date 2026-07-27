@@ -1,4 +1,4 @@
-package db.quiz.quiz03;
+package db.v4;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class StudentDAO {
-	public static ArrayList<Student> findStudentList() {
-		ArrayList<Student> studList = null;
+	public static ArrayList<StudentDTO> findStudentList() {
+		ArrayList<StudentDTO> studList = null;
 		Connection conn = DBConnectionManager.connectDB();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -23,7 +23,7 @@ public class StudentDAO {
 			rs = pstmt.executeQuery();
 			studList = new ArrayList<>();
 			while(rs.next()) {
-				Student student = new Student();
+				StudentDTO student = new StudentDTO();
 				student.setStudno(rs.getInt("studno"));
 				student.setName(rs.getString("name"));
 				student.setBirthday(rs.getString("birthday"));;
@@ -45,8 +45,8 @@ public class StudentDAO {
 		}
 		return studList;
 	}
-	public static ArrayList<Student> findStudentListbyGrade(int grade){
-		ArrayList<Student> studList = null;
+	public static ArrayList<StudentDTO> findStudentListByGrade(int grade){
+		ArrayList<StudentDTO> studList = null;
 		Connection conn = DBConnectionManager.connectDB();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -63,7 +63,7 @@ public class StudentDAO {
 			rs = pstmt.executeQuery();
 			studList = new ArrayList<>();
 			while(rs.next()) {
-				Student student = new Student();
+				StudentDTO student = new StudentDTO();
 				student.setStudno(rs.getInt("studno"));
 				student.setName(rs.getString("name"));
 				student.setBirthday(rs.getString("birthday"));
@@ -85,7 +85,7 @@ public class StudentDAO {
 		}
 		return studList;
 	}
-	public static int addStudent(Student student) {
+	public static int addStudent(StudentDTO student) {
 		Connection conn = DBConnectionManager.connectDB();
 		PreparedStatement pstmt = null;
 		String sqlQuery = """
@@ -120,5 +120,87 @@ public class StudentDAO {
 			DBConnectionManager.disconnectDB(conn, pstmt);
 		}
 		return result;
+	}
+	public static StudentDTO findStudentByStudno(int studno){
+		Connection conn = DBConnectionManager.connectDB();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sqlQuery = """
+				select studno, name , id 
+					   , grade , jumin , to_char(birthday,'yyyy-mm-dd') as birthday
+					   , tel , height , weight , deptno1 , deptno2 , profno 
+				from student
+				where studno = ?
+				""";
+		StudentDTO student = null;
+		try {
+			pstmt = conn.prepareStatement(sqlQuery);
+			pstmt.setInt(1, studno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				student = new StudentDTO();
+				student.setStudno(rs.getInt("studno"));
+				student.setName(rs.getString("name"));
+				student.setBirthday(rs.getString("birthday"));
+				student.setId(rs.getString("id"));
+				student.setGrade(rs.getInt("grade"));
+				student.setJumin(rs.getString("jumin"));
+				student.setTel(rs.getString("tel"));
+				student.setHeight(rs.getInt("height"));
+				student.setWeight(rs.getInt("weight"));
+				student.setDeptno1(rs.getInt("deptno1"));
+				student.setDeptno2(rs.getInt("deptno2"));
+				student.setProfno(rs.getInt("profno"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, pstmt, rs);
+		}
+		return student;
+	}
+	public static StudentDTO findStudentMyPageByStudno(int studno) {
+		Connection conn = DBConnectionManager.connectDB();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sqlQuery = """
+				select *
+				from student s 
+					inner join department d
+						on s.deptno1 = d.deptno
+				where studno = ?
+				""";
+		StudentDTO sdDTO = null;
+		try {
+			pstmt = conn.prepareStatement(sqlQuery);
+			pstmt.setInt(1, studno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				sdDTO = new StudentDTO();
+				sdDTO.setStudno(rs.getInt("studno"));
+				sdDTO.setName(rs.getString("name"));
+				sdDTO.setBirthday(rs.getString("birthday"));
+				sdDTO.setId(rs.getString("id"));
+				sdDTO.setGrade(rs.getInt("grade"));
+				sdDTO.setJumin(rs.getString("jumin"));
+				sdDTO.setTel(rs.getString("tel"));
+				sdDTO.setHeight(rs.getInt("height"));
+				sdDTO.setWeight(rs.getInt("weight"));
+				sdDTO.setDeptno1(rs.getInt("deptno1"));
+				sdDTO.setDeptno2(rs.getInt("deptno2"));
+				sdDTO.setProfno(rs.getInt("profno"));
+				
+				//-- 추가로 department 부분까지
+				sdDTO.setDeptno(rs.getString("deptno"));
+				sdDTO.setDname(rs.getString("dname"));
+				sdDTO.setPart(rs.getString("part"));
+				sdDTO.setBuild(rs.getString("build"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, pstmt, rs);
+		}
+		return sdDTO;
 	}
 }
