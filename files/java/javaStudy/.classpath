@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/oracle/WINDOWS.X64_193000_db_home/jdbc/lib/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Documents/Eclipse/lib/ojdbc8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Documents/Eclipse/lib/json-simple-1.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
