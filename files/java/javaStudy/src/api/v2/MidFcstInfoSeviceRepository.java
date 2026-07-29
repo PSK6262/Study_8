@@ -50,7 +50,7 @@ public class MidFcstInfoSeviceRepository {
 		try {
 			String jsonString = requestApi_getMidTa(tmFc , regId);
 			//String jsonString = "{\"response\":{\"header\":{\"resultCode\":\"00\",\"resultMsg\":\"NORMAL_SERVICE\"},\"body\":{\"dataType\":\"JSON\",\"items\":{\"item\":[{\"regId\":\"11B10101\",\"taMin4\":26,\"taMin4Low\":1,\"taMin4High\":1,\"taMax4\":33,\"taMax4Low\":1,\"taMax4High\":1,\"taMin5\":25,\"taMin5Low\":1,\"taMin5High\":1,\"taMax5\":34,\"taMax5Low\":1,\"taMax5High\":1,\"taMin6\":25,\"taMin6Low\":1,\"taMin6High\":1,\"taMax6\":35,\"taMax6Low\":1,\"taMax6High\":1,\"taMin7\":26,\"taMin7Low\":1,\"taMin7High\":1,\"taMax7\":35,\"taMax7Low\":1,\"taMax7High\":1,\"taMin8\":26,\"taMin8Low\":0,\"taMin8High\":1,\"taMax8\":35,\"taMax8Low\":0,\"taMax8High\":1,\"taMin9\":25,\"taMin9Low\":0,\"taMin9High\":1,\"taMax9\":35,\"taMax9Low\":0,\"taMax9High\":1,\"taMin10\":25,\"taMin10Low\":0,\"taMin10High\":1,\"taMax10\":35,\"taMax10Low\":0,\"taMax10High\":1}]},\"pageNo\":1,\"numOfRows\":10,\"totalCount\":1}}}\r\n";
-			
+
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObj = (JSONObject) jsonParser.parse(jsonString);
 			JSONObject response = (JSONObject)jsonObj.get("response");
