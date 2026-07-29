@@ -61,6 +61,7 @@ public class ApiQuiz04Main {
 		try {
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject)jsonParser.parse(jsonString);
+			
 			String id = jsonObject.get("id").toString();
 			String name = jsonObject.get("name").toString();
 			
