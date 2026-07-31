@@ -41,7 +41,6 @@ select * from online_sale;
 --                                        and os1.rowid != os2.rowid)
 --group by (os1.user_id , os1.product_id)
 --order by os1.user_id , os1.product_id desc;
-
 select user_id , product_id
 from online_sale
 group by user_id , product_id
