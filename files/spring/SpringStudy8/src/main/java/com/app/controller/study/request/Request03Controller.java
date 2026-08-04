@@ -110,6 +110,9 @@ public class Request03Controller {
 		System.out.println(product);
 		// ex) ProductRequestForm으로 전달받고 
 		// Product 객체는 따로 DB저장, PRF는 데이터 검증용으로 사용 가능
+		System.out.println(product.getId());
+		System.out.println(product.getName());
+		System.out.println(product.getPrice());
 		
 		return "req/param/param8after";
 	}
