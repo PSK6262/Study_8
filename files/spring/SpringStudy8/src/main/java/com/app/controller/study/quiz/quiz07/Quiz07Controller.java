@@ -8,16 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/quiz07")
 public class Quiz07Controller {
 
-	@RequestMapping("/listTest")
-	public String listTest(Model model , HttpServletRequest request) {
-		String req = request.getParameter("type");
-		model.addAttribute("type", req);
-		if(req.equals("member")) {
+	@RequestMapping("/listTest/{itemId}")
+	public String listTest(Model model , @PathVariable String itemId ) {
+		model.addAttribute("type", itemId);
+		if("member".equals(itemId)) {
 			ArrayList<Member> memList = new ArrayList<>();
 			for(int i = 0 ; i < 5 ; i ++) {
 				Member m = new Member();
@@ -28,6 +29,6 @@ public class Quiz07Controller {
 			}
 			model.addAttribute("memList",memList);
 		}
-		return "/quiz/quiz07/listTest";
+		return "quiz/quiz07/listTest";
 	}
 }
