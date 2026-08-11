@@ -7,8 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.app.controller.service.room.RoomService;
+
 import com.app.dto.room.Room;
+import com.app.service.room.RoomService;
 
 @Controller
 public class RoomController {

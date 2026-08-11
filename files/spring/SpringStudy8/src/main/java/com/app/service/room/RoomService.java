@@ -1,4 +1,4 @@
-package com.app.controller.service.room;
+package com.app.service.room;
 
 import java.util.List;
 
