@@ -7,26 +7,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
+import com.app.dao.room.RoomDAO;
 import com.app.dto.room.Room;
 import com.app.service.room.RoomService;
 
 @Controller
 public class RoomController {
 	
-// 아래의 @Autowired 문단과 같은 의미이다.
-	private final RoomService roomService;
-	public RoomController(RoomService roomService) {
-		this.roomService = roomService;
-	}
-
-//	@Autowired // 의존성 주입
-//	RoomService roomService;
+//	RoomDAO roomDAO;
+	
+// 생성자 이용 의존성 주입
+//	private final RoomService roomService;
+//	public RoomController(RoomService roomService) {
+//		this.roomService = roomService;
+//	}
+ // setter 이용 의존성 주입
+//	public void setRoomDAO(RoomDAO roomDAO) {
+//		this.roomDAO = roomDAO;
+//	}
+	@Autowired // 의존성 주입
+	RoomService roomService;
 //	// Spring이 객체 관리 -> RoomService 찾아서 (Singleton 패턴으로 생성) 주입해준다.
 	
 	// 보유한 모든 호실 정보 조회
 	@GetMapping("/rooms")
 	public String rooms(Model model) {
+		
+		System.out.println("[Controller] /rooms 호출");
+		
 		// 호실 정보
 		// Controller -> Service 호출 , Service-> DAO 호출 , DAO <-> DB
 
