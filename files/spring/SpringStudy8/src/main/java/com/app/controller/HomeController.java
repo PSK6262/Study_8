@@ -2,17 +2,30 @@ package com.app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-//annotation
+
 @Controller
 public class HomeController {
-	
-	@RequestMapping("/home")
+
+	@RequestMapping("/")
 	public String home() {
+
+		//--ViewResolver 설정이 없으면
+		//return "/WEB-INF/views/home.jsp";
+		//return "/WEB-INF/views/mainpage.jsp";
+
+		//--ViewResolver 설정 이후
+		return "home";
+		//return "mainpage";
+		
+		//prefix : /WEB-INF/views/
+		//suffix : .jsp
 		
 		
-		//servlet-context의 ViewResolver 속성으로 인해서 경로 prefix suffix를 붙여준다.
-		// /WEB-INF/views/home.jsp로 알아서 출력됨.
-		//return "home";
-		return "mainpage";
+		//   /WEB-INF/views/home.jsp
+		
+		
+		
+		
+		
 	}
 }

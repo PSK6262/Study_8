@@ -9,38 +9,67 @@ import com.app.dao.room.RoomDAO;
 import com.app.dto.room.Room;
 import com.app.service.room.RoomService;
 
+// new RoomServiceImpl()
+
 @Service
 public class RoomServiceImpl implements RoomService {
+
+	@Autowired  //자동주입
+	RoomDAO roomDAO;
 	
-//	private final RoomDAO roomDAO;
+	
+	//생성자를 통한 의존성 주입
 //	public RoomServiceImpl(RoomDAO roomDAO) {
 //		this.roomDAO = roomDAO;
 //	}
 	
-	@Autowired
-	RoomDAO roomDAO;
+	//setter 메소드를 통한 의존성 주입
+//	public void setRoomDAO(RoomDAO roomDAO) {
+//		this.roomDAO = roomDAO;
+//	}
 	
 	@Override
 	public List<Room> findRoomList() {
-		System.out.println("RoomServicfeImpl findRoomList");
-		// 핵심 Business logic
-		// DAO 활용 -> 실제 DB에서 데이터 조회, 받아와서 해결
+
+		System.out.println("RoomServiceImpl findRoomList");
+		
+		//핵심 비즈니스 로직  | 서비스 로직
+		
+		//전체호실정보 조회 
+		
+		// DAO 활용(호출) ->  실제 DB에서 데이터 조회해서 달라!
 		List<Room> roomList = roomDAO.findRoomList();
+		
 		return roomList;
 	}
 
+
+	@Override
+	public int saveRoom(Room room) {
+		
+		//Controller 가 저장할 room 을 매개변수로 전달
+		// -> 전달받은 매개변수 room -> DAO 전달 저장해달라! 
+		// -> DAO가 DB에저장 -> 저장결과를 return 
+		// -> 서비스 입장에서 return 받은 결과를 Controller 에게 return
+		
+		int result = roomDAO.saveRoom(room);
+		
+		return result;
+	}
+	
+	
 }
 
 
-/*
- * 영업일 정보 -> 업장정보(DTO)에 포함.
- * 업장정보 - 이름 , 여는시간 , 닫는시간 , 장소 , 전화번호 , 영업일( ex)월~금 )
- * 예약시 객실 가격정보 -> ReserveRoom =( Room , 가격 , 시간 등) 
- * 게시판 글 DTO -> 작성자명,글 제목, 글 작성시간 , 글 번호(pk), 이미지주소, 글 내용  
- * 
- *  reservationService => 예약이 잘 완료되었음을 리턴
- *  예약을 시도했으니 출력되는건 예약이 잘 되었다 or ErrorCode
- * 
- * 
- * 
- */
+
+
+
+
+
+
+
+
+
+
+
+	
