@@ -22,11 +22,11 @@ public class BeanConfiguration {
 	public RoomDAO roomDAO() {
 		return new RoomDAOImpl();
 	}
-	
-	@Bean
-	public RoomService roomService() {
-		RoomService roomService = new RoomServiceImpl(roomDAO);
-		return roomService;
-	}
+//	
+//	@Bean
+//	public RoomService roomService() {
+//		RoomService roomService = new RoomServiceImpl(roomDAO);
+//		return roomService;
+//	}
 	
 }
