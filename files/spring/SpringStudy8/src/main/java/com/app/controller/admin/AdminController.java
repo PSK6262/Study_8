@@ -62,11 +62,10 @@ public class AdminController {
 	public String addUser() {
 		return "admin/addUser";
 	}
-	
+
 	@PostMapping("/admin/users/add")
 	public String addUserAction(User user) {
 			// user 정보를 DB에 저장
-		
 		/*
 		 * 1) Controller에서 바로 처리.
 		 * user.setUserType("CUS");
@@ -76,9 +75,19 @@ public class AdminController {
 		 * "비지니스 로직" << 이게 Service의 존재 이유
 		 * userService.saveCustomerUser(user);
 		 */
-		userService.saveCustomerUser(user);
+		int result = userService.saveCustomerUser(user);
+		if(result > 0) {
+			return "redirect:/admin/users";
+		} else {
+			return "admin/addUser";
+		}
+	}
+	
+	@GetMapping("/admin/users")
+	public String users(Model model) {
+		List<User> userList = userService.findUserList();
+		model.addAttribute("userList",userList);
 		
-		System.out.println(user);
-		return "admin/addUser";
+		return "admin/users";
 	}
 }
