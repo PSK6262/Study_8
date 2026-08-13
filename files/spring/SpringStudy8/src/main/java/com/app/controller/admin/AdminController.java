@@ -1,7 +1,10 @@
 package com.app.controller.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,8 +34,21 @@ public class AdminController {
 		int result = roomService.saveRoom(room);
 		
 		// result 값 확인 -> 성공/실패 -> 진행
+		System.out.println("Insert 처리결과 : " + result);
 		
+		if(result > 0) {
+			return "redirect:/admin/rooms";
+		}
 		return "admin/registerRoom";
+	}
+	@GetMapping("/admin/rooms")
+	public String rooms(Model model) {
+		// rooms 페이지
+		// t_room 테이블 객실 데이터 -> 조회 -> view 전달 -> 표시
+		List<Room> roomList = roomService.findRoomList();
+		model.addAttribute("roomList",roomList);
+		
+		return "admin/rooms";
 		
 	}
 }

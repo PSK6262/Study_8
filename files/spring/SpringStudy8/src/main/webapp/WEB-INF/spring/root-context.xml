@@ -13,6 +13,7 @@
 <!-- setter 메소드를 통한 의존성 주입 -->
 <!--     <property name="roomDAO" ref="roomDAO"></property> -->
 <!-- 	</bean> -->
+
 	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="data_source">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
