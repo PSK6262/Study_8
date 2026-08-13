@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.app.dto.user.User;
 import com.app.dto.room.Room;
 import com.app.service.room.RoomService;
+import com.app.service.user.UserService;
 
 @Controller
 public class AdminController {
@@ -19,6 +21,9 @@ public class AdminController {
 	
 	@Autowired
 	RoomService roomService;
+	
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("/admin/registerRoom")
 	public String registerRoom() {
@@ -49,23 +54,31 @@ public class AdminController {
 		model.addAttribute("roomList",roomList);
 		
 		return "admin/rooms";
+	}
+	
+	// 관리자가 사용자 계정관리 -> 사용자 계정 임의 추가
+	
+	@GetMapping("/admin/users/add")
+	public String addUser() {
+		return "admin/addUser";
+	}
+	
+	@PostMapping("/admin/users/add")
+	public String addUserAction(User user) {
+			// user 정보를 DB에 저장
 		
+		/*
+		 * 1) Controller에서 바로 처리.
+		 * user.setUserType("CUS");
+		 * userService.saveUser(user);
+		 * 
+		 * 2) 서비스 계층 /레이어 / 레벨 에서 사용자를 지정하는 메소드 형태로 사용
+		 * "비지니스 로직" << 이게 Service의 존재 이유
+		 * userService.saveCustomerUser(user);
+		 */
+		userService.saveCustomerUser(user);
+		
+		System.out.println(user);
+		return "admin/addUser";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
