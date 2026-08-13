@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.app.dto.user.User;
@@ -48,13 +49,31 @@ public class AdminController {
 	}
 	@GetMapping("/admin/rooms")
 	public String rooms(Model model) {
-		// rooms 페이지
+		// roomss 페이지
 		// t_room 테이블 객실 데이터 -> 조회 -> view 전달 -> 표시
 		List<Room> roomList = roomService.findRoomList();
 		model.addAttribute("roomList",roomList);
 		
 		return "admin/rooms";
 	}
+	
+	//PK 기준 조회 - roomId => PK
+	@GetMapping("/admin/room/{roomId}")
+	public String room(@PathVariable String roomId , Model model) {
+		int roomIdPK = Integer.parseInt(roomId);
+		Room room = roomService.findRoomByRoomId(roomIdPK);
+		
+		if(room == null) {
+			//예외처리
+		}
+		model.addAttribute("room",room);
+		
+		return "admin/room";
+	}
+	
+	
+	
+	
 	
 	// 관리자가 사용자 계정관리 -> 사용자 계정 임의 추가
 	

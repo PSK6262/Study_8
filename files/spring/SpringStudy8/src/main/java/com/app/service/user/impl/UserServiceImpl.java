@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.dao.user.UserDAO;
+import com.app.dto.room.Room;
 import com.app.dto.user.User;
 import com.app.service.user.UserService;
 
