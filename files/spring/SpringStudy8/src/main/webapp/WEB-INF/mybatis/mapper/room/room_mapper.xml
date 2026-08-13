@@ -25,5 +25,8 @@
 		from t_room
 		where room_id = #{roomId}
 	</select>
-	
+	<delete id="removeRoom" parameterType="int">
+		delete from t_room
+		where room_id = #{roomId}
+	</delete>
 </mapper>
