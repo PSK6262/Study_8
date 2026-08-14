@@ -1,10 +1,13 @@
 package com.app.controller.customer;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.app.common.CommonCode;
 import com.app.dto.user.User;
 import com.app.service.user.UserService;
 
@@ -27,5 +30,28 @@ public class CustomerController {
 		int result = userService.saveCustomerUser(user);
 		if(result > 0) return "redirect:/main";
 		else return "/customer/signup";
+	}
+	
+	@GetMapping("/customer/signin")
+	public String signin() {
+		return "customer/signin";
+	}
+	
+	@PostMapping("/customer/signin")
+	public String signinAction(User user, HttpSession session) {
+		System.out.println("로그인 시 입력한 값");
+		System.out.println(user);
+		
+		user.setUserType( CommonCode.USER_USERTYPE_CUSTOMER );
+		User loginUser = userService.checkUserLogin(user);
+		if(loginUser ==  null) { // 실패
+			System.out.println("로그인 실패");
+			return "customer/signin";
+		} else { // 성공
+			System.out.println("로그인 성공");
+			session.setAttribute("loginUserId", loginUser);
+			
+			return "redirect:/main";
+		}
 	}
 }

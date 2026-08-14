@@ -9,10 +9,15 @@
 <body>
 <h1>메인 페이지</h1>
 	<button type="button" id="sendToCreateAccount">회원가입 하러 가기</button>
+	<button type="button" onclick="goSignup()">회원가입</button>
+	<button type="button" onclick="location.href='/customer/signin' ">로그인</button>
 	<script>
 		document.getElementById("sendToCreateAccount").addEventListener('click', ()=>{
 			location.href = "/customer/signup";
 		})
+		function goSignup(){
+			location.href = '/customer/signup';
+		}
 	</script>
 </body>
 </html>
