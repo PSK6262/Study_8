@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -50,8 +51,29 @@ public class CustomerController {
 		} else { // 성공
 			System.out.println("로그인 성공");
 			session.setAttribute("loginUserId", loginUser);
-			
-			return "redirect:/main";
+			return "redirect:/customer/mypage";
 		}
+	}
+	
+	@GetMapping("/customer/mypage")
+	public String mypage(HttpSession session , Model model) {
+		// 로그인 되어있는 사용자의 정보 표시
+		// session -> loginUserId
+		
+		if(session.getAttribute("loginUserId") != null) {
+			String loginUserId = session.getAttribute("loginUserId").toString();
+			User user = userService.findUserById(loginUserId);
+			model.addAttribute("user", user);
+			System.out.println("mypage");
+			return "customer/mypage";
+		}
+		// 로그인 X
+		return "redirect:/customer/signin";
+	}
+	
+	@GetMapping("/customer/signout")
+	public String signout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/main";
 	}
 }
