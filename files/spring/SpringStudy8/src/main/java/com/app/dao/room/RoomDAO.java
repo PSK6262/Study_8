@@ -9,4 +9,5 @@ public interface RoomDAO {
 	int saveRoom(Room room);
 	int removeRoom(int roomId);
 	Room findRoomByRoomId(int roomId);
+	int modifyRoom(Room room);
 }

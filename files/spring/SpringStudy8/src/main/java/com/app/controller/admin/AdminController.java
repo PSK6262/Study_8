@@ -129,4 +129,37 @@ public class AdminController {
 		return "redirect:/admin/rooms";
 		
 	}
+	
+	// localhost:8080/admin/modifyRoom?roomId=5
+	@GetMapping("/admin/modifyRoom")
+	public String modifyRoom(HttpServletRequest request) {
+		//수정화면 진입 시 기존값들 세팅
+		String roomId = request.getParameter("roomId");
+		if(roomId == null) {
+			return "redirect:/admin/rooms";
+		}
+		
+		//PK값으로 객실정보 조회
+		int roomIdPk = Integer.parseInt(roomId);
+		Room room = roomService.findRoomByRoomId(roomIdPk);
+		System.out.println(room);
+		request.setAttribute("room", room);
+		return "admin/modifyRoom";
+	}
+	
+	@PostMapping("/admin/modifyRoom")
+	public String modifyRoomAction(Room room) {
+	
+		// Modify value
+		System.out.println("수정하려는 객실 정보");
+		System.out.println(room);
+		
+		int result = roomService.modifyRoom(room);
+		
+		if(result > 0) { // 성공시
+			return "redirect:/admin/room/" + room.getRoomId();
+		} else {
+			return "redirect:/admin/modifyRoom?roomId=" + room.getRoomId();
+		}
+	}
 }
