@@ -50,7 +50,8 @@ public class CustomerController {
 			return "customer/signin";
 		} else { // 성공
 			System.out.println("로그인 성공");
-			session.setAttribute("loginUserId", loginUser);
+			System.out.println(loginUser);
+			session.setAttribute("loginUserId", loginUser.getId());
 			return "redirect:/customer/mypage";
 		}
 	}

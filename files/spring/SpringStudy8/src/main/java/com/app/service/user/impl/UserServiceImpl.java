@@ -58,6 +58,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User checkUserLogin(User user) {
+		/*
+		// 1) DB에서 User정보 조회 -> 서비스 계층에서 상태 비교 수행
 		
 		User loginUser = userDAO.findUserById(user.getId());
 		if(loginUser != null 
@@ -67,6 +69,10 @@ public class UserServiceImpl implements UserService {
 		}
 		//로그인 실패
 		return null;
+		*/
+		// 2) DB Query상에서 정보 일치 여부 비교 수행
+		User loginUser = userDAO.checkUserLogin(user); // object or null
+		return loginUser;
 	}
 
 	@Override

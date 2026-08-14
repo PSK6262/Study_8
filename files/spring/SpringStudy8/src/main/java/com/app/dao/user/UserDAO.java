@@ -10,4 +10,7 @@ public interface UserDAO {
 	public List<User> findUserList();
 
 	public User findUserById(String id);
+	
+	//db넘기기
+	public User checkUserLogin(User user);
 }
