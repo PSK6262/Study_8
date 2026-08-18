@@ -4,6 +4,7 @@
 		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		   
 <mapper namespace="user_mapper">
+
 	<insert id="saveUser" parameterType="User">
 		insert into t_user values (
 			#{id},
@@ -12,14 +13,83 @@
 			#{userType}
 		)
 	</insert>
+	
 	<select id="findUserList" resultType="User">
 		select * 
 		from t_user
 	</select>
+	
+	<select id="findUserListBySearchCondition" resultType="User" parameterType="UserSearchCondition">
+
+	select *
+	from t_user
+	<where>
+		<trim prefixOverrides="OR" prefix="(" suffix=")">
+			<if test="name != null and name != '' ">
+				name like '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="id != null and id != '' ">
+				or id like '%' || #{searchKeyword} || '%'
+			</if>
+		</trim>
+		<if test="userType != null and userType != '' ">
+			and user_type = #{userType}
+		</if>
+	</where>
+	
+	<!-- 	select *
+	from t_user
+	<where>
+		<if test = "(name != null and name != '') || (id != null and id != '')">
+			(
+				<if test="name != null and name != '' ">
+					name like '%' || #{searchKeyword} || '%'
+				</if>
+				<if test="id != null and id != '' ">
+					<if test="name != null and name != '' ">
+						or id like '%' || #{searchKeyword} || '%'
+					</if>
+					<if test="name == null and name == '' ">
+						id like '%' || #{searchKeyword} || '%'
+					</if>
+				</if>
+			)
+			<if test="userType != null and userType != '' ">
+				and user_type = #{userType}
+			</if>
+		</if>
+	</where> -->
+	
+	
+	
+			<!-- 	<if test="name != null and name != '' ">
+				name like '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="id != null and id != '' ">
+				and id like '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="userType != null and userType != '' ">
+				and user_type = #{userType}
+			</if> -->
+
+		<!-- select * 
+		from t_user
+		where 1 = 1
+		<if test="name != null and name != '' ">
+			and name like '%' || #{searchKeyword} || '%'
+		</if>
+		<if test="id != null and id != '' ">
+			and id like '%' || #{searchKeyword} || '%'
+		</if> -->
+		
+		
+	</select>
+	
 	<select id="findUserById" resultType="User" parameterType="String">
 		select * from t_user
 		where id = #{id}
 	</select>
+	
 	<select id="checkUserLogin" resultType="User" parameterType="User">
 		select * 
 		from t_user
@@ -27,11 +97,13 @@
 		AND pw = #{pw}
 		AND user_type = #{userType}
 	</select>
+	
 	<update id="modifyPassword" parameterType="User">
 		update t_user
 		set pw = #{pw}
 		where id = #{id}
 	</update> 
+	
 	<update id="modifyUser" parameterType="User">
 		update t_user
 		set id = #{id},
@@ -40,4 +112,5 @@
 		user_type = #{userType}
 		where id = #{id}
 	</update> 
+	
 </mapper>
