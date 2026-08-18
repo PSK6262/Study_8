@@ -32,4 +32,12 @@
 		set pw = #{pw}
 		where id = #{id}
 	</update> 
+	<update id="modifyUser" parameterType="User">
+		update t_user
+		set id = #{id},
+		pw = #{pw},
+		name = #{name},
+		user_type = #{userType}
+		where id = #{id}
+	</update> 
 </mapper>

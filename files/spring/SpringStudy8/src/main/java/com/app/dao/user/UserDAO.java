@@ -6,13 +6,9 @@ import com.app.dto.user.User;
 
 public interface UserDAO {
 	public int saveUser(User user);
-	
 	public List<User> findUserList();
-
 	public User findUserById(String id);
-	
-	//db넘기기
 	public User checkUserLogin(User user);
-	
 	public int modifyPassword(User user);
+	public int modifyUser(User user);
 }
