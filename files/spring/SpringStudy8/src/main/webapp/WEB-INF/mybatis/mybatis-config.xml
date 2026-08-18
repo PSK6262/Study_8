@@ -12,4 +12,5 @@
 		<typeAlias type="com.app.dto.room.Room" alias="Room"/>
 		<typeAlias type="com.app.dto.user.User" alias="User"/>
 	</typeAliases>
+	
 </configuration>

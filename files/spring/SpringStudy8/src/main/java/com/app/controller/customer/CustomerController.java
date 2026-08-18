@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.app.common.CommonCode;
 import com.app.dto.user.User;
 import com.app.service.user.UserService;
+import com.app.util.LoginManager;
 
 @Controller
 public class CustomerController {
@@ -51,7 +52,9 @@ public class CustomerController {
 		} else { // 성공
 			System.out.println("로그인 성공");
 			System.out.println(loginUser);
-			session.setAttribute("loginUserId", loginUser.getId());
+			//session.setAttribute("loginUserId", loginUser.getId());
+			LoginManager.setSessionLoginUserId(session, loginUser.getId());
+			
 			return "redirect:/customer/mypage";
 		}
 	}
@@ -62,7 +65,8 @@ public class CustomerController {
 		// session -> loginUserId
 		
 		if(session.getAttribute("loginUserId") != null) {
-			String loginUserId = session.getAttribute("loginUserId").toString();
+			//String loginUserId = session.getAttribute("loginUserId").toString();
+			String loginUserId = LoginManager.getLoginUserId(session);
 			User user = userService.findUserById(loginUserId);
 			model.addAttribute("user", user);
 			System.out.println("mypage");
@@ -74,7 +78,9 @@ public class CustomerController {
 	
 	@GetMapping("/customer/signout")
 	public String signout(HttpSession session) {
-		session.invalidate();
+		//session.invalidate();
+		LoginManager.logout(session);
+		
 		return "redirect:/main";
 	}
 }
