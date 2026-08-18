@@ -27,4 +27,9 @@
 		AND pw = #{pw}
 		AND user_type = #{userType}
 	</select>
+	<update id="modifyPassword" parameterType="User">
+		update t_user
+		set pw = #{pw}
+		where id = #{id}
+	</update> 
 </mapper>

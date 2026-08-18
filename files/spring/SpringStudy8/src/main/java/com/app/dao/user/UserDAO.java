@@ -13,4 +13,6 @@ public interface UserDAO {
 	
 	//db넘기기
 	public User checkUserLogin(User user);
+	
+	public int modifyPassword(User user);
 }

@@ -80,4 +80,11 @@ public class UserServiceImpl implements UserService {
 		User user = userDAO.findUserById(id);
 		return user;
 	}
+
+
+	@Override
+	public int modifyPassword(User user) {
+		int result = userDAO.modifyPassword(user);
+		return result;
+	}
 }

@@ -1,5 +1,6 @@
 package com.app.controller.customer;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +83,39 @@ public class CustomerController {
 		LoginManager.logout(session);
 		
 		return "redirect:/main";
+	}
+	
+	@GetMapping("/customer/modifyPw")
+	public String modifyPw(HttpSession session, Model model) {
+		if(!LoginManager.isLogin(session)) {
+			System.out.println("login 정보 없음");
+			return "redirect:/main";
+		}
+		String userId = LoginManager.getLoginUserId(session);
+		model.addAttribute("userId",userId);
+		
+		return "/customer/modifyPw";
+	}
+	
+	@PostMapping("/customer/modifyPw")
+	public String modifyPwAction(HttpServletRequest request) {
+		String password = request.getParameter("pw");
+		System.out.println(password);
+		User user = userService.findUserById(LoginManager.getLoginUserId(request));
+		user.setPw(password);
+		
+		int result = userService.modifyPassword(user);
+		
+		if(result < 0 ) {
+			System.out.println("오류 발생, 재시도 해주세요");
+			return "redirect:/customer/modifyPw";
+		}
+		
+		System.out.println("비밀번호 : " +password + "로 변경 완료");
+		System.out.println(user);
+		LoginManager.logout(request);
+		System.out.println("다시 로그인 해주세요");
+		
+		return "redirect:/customer/signin";
 	}
 }
