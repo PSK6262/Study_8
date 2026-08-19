@@ -86,4 +86,9 @@ public class Rest02Controller {
 		return user;
 	}
 	
+	@GetMapping("/rest/rest10")
+	public String rest10() {
+		return "텍스트 리턴";
+	}
+	
 }
