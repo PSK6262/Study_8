@@ -25,6 +25,18 @@
 		from t_room
 		where room_id = #{roomId}
 	</select>
+	<select id="findRoomBySearchCondition" resultType="Room" parameterType="RoomSearchCondition">
+		select *
+		from t_room
+		<where>
+			<if test="searchKeyword != null and searchKeyword != '' ">
+				building_name like '%' || #{searchKeyword} || '%'
+			</if>
+			<if test="viewType != null and viewType != '' ">
+				and view_type = #{viewType}
+			</if>
+		</where>
+	</select>
 	<delete id="removeRoom" parameterType="int">
 		delete from t_room
 		where room_id = #{roomId}

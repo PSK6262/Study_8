@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.dto.room.Room;
+import com.app.dto.room.RoomSearchCondition;
 import com.app.service.room.RoomService;
 import com.app.service.user.UserService;
 
@@ -51,12 +52,17 @@ public class AdminController {
 		return "admin/registerRoom";
 	}
 	@GetMapping("/admin/rooms")
-	public String rooms(Model model) {
-		// roomss 페이지
-		// t_room 테이블 객실 데이터 -> 조회 -> view 전달 -> 표시
-		List<Room> roomList = roomService.findRoomList();
-		model.addAttribute("roomList",roomList);
+	public String rooms(Model model, RoomSearchCondition roomSearchCondition) {
 		
+		List<Room> roomList = roomService.findRoomListBySearchCondition(roomSearchCondition);
+		model.addAttribute("roomList",roomList);
+		model.addAttribute("roomSearchCondition",roomSearchCondition);
+		
+//		// rooms 페이지
+//		// t_room 테이블 객실 데이터 -> 조회 -> view 전달 -> 표시
+//		List<Room> roomList = roomService.findRoomList();
+//		model.addAttribute("roomList",roomList);
+//		
 		return "admin/rooms";
 	}
 	
