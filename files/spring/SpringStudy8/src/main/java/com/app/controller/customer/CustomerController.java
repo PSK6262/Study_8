@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.app.common.CommonCode;
 import com.app.dto.user.User;
@@ -33,6 +35,24 @@ public class CustomerController {
 		int result = userService.saveCustomerUser(user);
 		if(result > 0) return "redirect:/main";
 		else return "/customer/signup";
+	}
+	
+	@ResponseBody
+	@PostMapping("/customer/checkDupId")
+	public String checkDupId(@RequestBody String data) {
+		// 클라이언트가 전달한 값 받고 중복인지 아닌지 DB에서 조회 확인
+		// 중복 Y , 아니면 N
+		System.out.println("/customer/checkDupId");
+		System.out.println(data);
+		
+		boolean result = userService.isDuplicatedId(data);
+		System.out.println(result);
+		
+		if(result) {
+			return "Y";
+		} else {
+			return "N";
+		}
 	}
 	
 	@GetMapping("/customer/signin")

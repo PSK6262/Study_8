@@ -100,4 +100,15 @@ public class UserServiceImpl implements UserService {
 		List<User> userList = userDAO.findUserListBySearchCondition(userSearchCondition);
 		return userList;
 	}
+
+	@Override
+	public boolean isDuplicatedId(String id) {
+		// 매개변수 DB에 있나
+		User user = userDAO.findUserById(id);
+		if(user == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
