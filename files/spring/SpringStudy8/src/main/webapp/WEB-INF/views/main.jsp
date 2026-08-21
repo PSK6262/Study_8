@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 	<style>
+		h1{color:red;}
+	</style> -->
+
+	<link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
 <h1>메인 페이지</h1>
@@ -19,6 +24,9 @@
 		<button type="button" onclick="location.href='/customer/mypage' ">마이페이지</button>	
 		<button type="button" onclick="location.href='/customer/signout' ">로그아웃</button>	
 	</c:if>
+	<div>
+		<img src="/images/ocean.jpg">
+	</div>
 	<script>
 		document.getElementById("sendToCreateAccount").addEventListener('click', ()=>{
 			location.href = "/customer/signup";
@@ -27,5 +35,6 @@
 			location.href = '/customer/signup';
 		}
 	</script>
+	<script src="/js/main.js"></script>
 </body>
 </html>
