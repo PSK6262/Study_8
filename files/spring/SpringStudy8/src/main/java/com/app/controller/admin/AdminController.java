@@ -3,6 +3,7 @@ package com.app.controller.admin;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,11 +17,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
+import com.app.common.CommonCode;
 import com.app.dto.room.Room;
 import com.app.dto.room.RoomSearchCondition;
 import com.app.service.room.RoomService;
 import com.app.service.user.UserService;
+import com.app.util.LoginManager;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class AdminController {
 	//관리자 접근 페이지   (전체 관리자) or (판매자측/호텔측 사용자)
@@ -215,5 +221,37 @@ public class AdminController {
 		} else { // 수정실패
 			return "redirect:/admin/modifyUser/" + user.getId();
 		}
+	}
+	
+	@GetMapping("/admin/signin")
+	public String signin() {
+		return "admin/signin";
+	}
+	
+	@PostMapping("/admin/signin")
+	public String signinAction(User user, HttpSession session) {
+		log.info("관리자페이지 로그인 시도");
+		log.info(user);
+		
+		user.setUserType(CommonCode.USER_USERTYPE_ADMIN);
+		System.out.println(user);
+		User loginUser = userService.checkUserLogin(user);
+		System.out.println(loginUser);
+		if(loginUser == null) {
+			System.out.println("관리자가 아닙니다");
+			return "admin/signin";
+		} else {
+			log.info("관리자 계정 로그인 성공 {}",loginUser);
+			LoginManager.setSessionLoginUserId(session, loginUser.getId());
+			System.out.println("로그인 성공");
+			return "redirect:/main";
+		}
+	}
+	@GetMapping("/admin/signout")
+	public String signout(HttpSession session) {
+		//session.invalidate();
+		LoginManager.logout(session);
+		
+		return "redirect:/main";
 	}
 }

@@ -56,7 +56,9 @@
 		<interceptor>
 			<!-- 모든 경로 -->
 			<mapping path="/admin/**"/>
-			
+			<exclude-mapping path="/admin/signin"/>	
+			<exclude-mapping path="/"/>
+			<exclude-mapping path="/main"/>
 			<beans:bean class="com.app.interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
