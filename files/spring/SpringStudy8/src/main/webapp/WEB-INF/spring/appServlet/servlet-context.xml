@@ -40,7 +40,7 @@
 	<interceptors>
 		<interceptor>
 			<!-- 모든 경로 -->
-			<mapping path="/**"/>
+			<mapping path="/customer/**"/>
 			<exclude-mapping path="/customer/signin"/>
 			<exclude-mapping path="/customer/signup"/>
 			<exclude-mapping path="/"/>
@@ -51,6 +51,13 @@
 			<exclude-mapping path="/js/**"/>
 			<exclude-mapping path="/images/**"/>
 			<beans:bean class="com.app.interceptor.LoginInterceptor"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<!-- 모든 경로 -->
+			<mapping path="/admin/**"/>
+			
+			<beans:bean class="com.app.interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 </beans:beans>
