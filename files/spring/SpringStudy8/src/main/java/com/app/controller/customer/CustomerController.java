@@ -1,12 +1,18 @@
 package com.app.controller.customer;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -41,7 +47,19 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/customer/signup")
-	public String signup(User user) {
+	public String signupAction(@Valid @ModelAttribute User user, BindingResult br) { // 유효성 검증 실패시 BindingResult에 담아진다.
+		//유효성 검증
+		if(br.hasErrors()) {
+			//true면 뭔가 잘못된게 있다
+			List<ObjectError> errorList = br.getAllErrors();
+			for(ObjectError er : errorList) {
+				System.out.println(er.getObjectName());
+				System.out.println(er.getDefaultMessage());
+				System.out.println(er.getCode());
+				System.out.println(er.getCodes()[0]);
+			}
+			return "/customer/signup";
+		}
 		int result = userService.saveCustomerUser(user);
 		if(result > 0) return "redirect:/main";
 		else return "/customer/signup";

@@ -1,25 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.error-msg{
+		color:red;
+	}
+</style>
 </head>
 <body>
 	<h1>회원가입</h1>
 	<form action="" method="post">
-		<label>사용자 아이디 &nbsp;<input type="text" name="id" id="inputId"></label>
-		<button type="button" id="btn_checkDupId">중복체크</button><br>
-		<button type="button" id="btn_checkDupIdJson">중복체크Json</button><br>
+		사용자아이디 : <input type="text" name="id" id="inputId" value="${user.id}"><br>
+		
+		
+		<spring:hasBindErrors name="user">
+			<c:if test="${errors.hasFieldErrors('id') }">
+				<p class="error-msg">아이디 필수 입력!!</p>
+				<p class="error-msg">${errors.getFieldError('id').defaultMessage } </p>
+			</c:if>
+		</spring:hasBindErrors>
+		
+		
+		
+		<button type="button" id="btn_checkDupId">중복체크</button>
+		<button type="button" id="btn_checkDupIdJson">중복체크Json</button>
 		<p id="checkDupIdMsg"></p>
 		
-		<label>사용자 비번 &nbsp;<input type="password" name="pw"></label><br>
-		<label>사용자 이름 &nbsp;<input type="text" name="name"></label><br>
-		<button type="submit">계정생성</button>
+		사용자 이름 : <input type="text" name="name" value="${user.name}"> <br>
+		사용자 비번 : <input type="password" name="pw" value="${user.pw}"><br>
+		
+		<spring:hasBindErrors name="user">
+			<c:if test="${errors.hasFieldErrors('pw') }">
+				<p class="error-msg">비밀번호 길이확인!!!!</p>
+				<p class="error-msg">${errors.getFieldError('pw').defaultMessage } </p>
+			</c:if>
+		</spring:hasBindErrors>
+		
+		 <br>
+		<button type="submit">등록하기</button>
 	</form>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/4.0.0/jquery.min.js" integrity="sha512-8LENNbXmzI/Gbj+OwXmqR6V4QaUAw0/porPzy1+dQoJqC0JPHedWoe0DDOTL2uHA5XXJyIsPtiMHH86pVlay6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script>
-		//중복체크 버튼을 클릭 -> input태그에 입력한 아이디 값 확인 -> 서버로 ajax 요청 ( 아이디 담아서 ) -> 서버에서 중복체크 확인
+		// 중복체크 버튼을 클릭 -> input태그에 입력한 아이디 값 확인 -> 서버로 ajax 요청 ( 아이디 담아서 ) -> 서버에서 중복체크 확인
 		// -> 결과 응답 -> (클라이언트) 응답 값 확인 -> 화면에 표시
 		
 		const btn_checkDupId = document.getElementById("btn_checkDupId");
