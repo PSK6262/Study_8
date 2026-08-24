@@ -134,7 +134,8 @@ public class AdminController {
 			return "admin/addUser";
 		}
 		if(user.getId().length() < 4 || user.getId().length() > 12) {
-			
+			log.info("아이디 유효성 검증 길이 안맞음 {}" , user);
+			return "admin/addUser";
 		}
 		
 		int result = userService.saveCustomerUser(user);
