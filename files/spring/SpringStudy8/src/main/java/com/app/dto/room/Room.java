@@ -14,5 +14,4 @@ public class Room {  //RoomDTO
 					//오션뷰 시티뷰 마운틴뷰
 					//OCN  CTY  MOT
 					//1    2    3
-	
 }

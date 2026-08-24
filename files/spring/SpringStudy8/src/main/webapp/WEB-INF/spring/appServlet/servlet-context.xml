@@ -37,9 +37,9 @@
 			</beans:bean>				
 		</message-converters>					
 	</annotation-driven>
-	<interceptors>
+<!-- 	<interceptors>
 		<interceptor>
-			<!-- 모든 경로 -->
+			모든 경로
 			<mapping path="/customer/**"/>
 			<exclude-mapping path="/customer/signin"/>
 			<exclude-mapping path="/customer/signup"/>
@@ -54,12 +54,12 @@
 		</interceptor>
 		
 		<interceptor>
-			<!-- 모든 경로 -->
+			모든 경로
 			<mapping path="/admin/**"/>
 			<exclude-mapping path="/admin/signin"/>	
 			<exclude-mapping path="/"/>
 			<exclude-mapping path="/main"/>
 			<beans:bean class="com.app.interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 </beans:beans>

@@ -24,10 +24,30 @@
 	
 	
 <!-- 	관리자가 필요한 값만 사용자로 임시 등록 -->
-	<form action="" method="post">
-		사용자아이디 : <input type="text" name="id"><br>
-		사용자 이름 : <input type="text" name="name"><br>
+	<form action="" method="post" id="addUserAction">
+		사용자아이디 : <input type="text" name="id" id="inputId"><br>
+		사용자 이름 : <input type="text" name="name" id="inputName"><br>
 		<button type="submit">등록하기</button>
 	</form>
+	<script>
+		const addUserAction = document.getElementById("addUserAction");
+		addUserAction.addEventListener('submit',(e)=>{
+			e.preventDefault();
+			
+			let inputId = document.getElementById("inputId").value;
+			inputId = inputId.trim();
+			if(inputId == ''){ 
+				alert('ID 필수입력');
+				return;
+			}
+			
+			if(inputId.length < 3 || inputId.length > 15){
+				alert('아이디 길이 확인 (3 ~ 12)');
+				return;
+			}
+			
+			addUserAction.submit();
+		})
+	</script>
 </body>
 </html>

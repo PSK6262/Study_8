@@ -123,7 +123,20 @@ public class AdminController {
 		 * 2) 서비스 계층 /레이어 / 레벨 에서 사용자를 지정하는 메소드 형태로 사용
 		 * "비지니스 로직" << 이게 Service의 존재 이유
 		 * userService.saveCustomerUser(user);
+		
+		 * 유효성 검증
+		 *
+		 * 서버측에서 insert하기 전에 값 확인
 		 */
+		// 자바코드로 검증
+		if(user.getId() == null || "".equals(user.getId().trim())) {
+			log.info("아이디 유효성 검증 필터링 처리 {}", user);
+			return "admin/addUser";
+		}
+		if(user.getId().length() < 4 || user.getId().length() > 12) {
+			
+		}
+		
 		int result = userService.saveCustomerUser(user);
 		if(result > 0) {
 			return "redirect:/admin/users";
@@ -223,7 +236,7 @@ public class AdminController {
 		}
 	}
 	
-	@GetMapping("/admin/signin")
+ 	@GetMapping("/admin/signin")
 	public String signin() {
 		return "admin/signin";
 	}
