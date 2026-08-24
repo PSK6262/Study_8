@@ -32,6 +32,11 @@
 		<p id="checkDupIdMsg"></p>
 		
 		사용자 이름 : <input type="text" name="name" value="${user.name}"> <br>
+		
+		<c:if test="${userValidError.name != null}">
+			<p class="error-msg">${userValidError.name}</p>
+		</c:if>
+		
 		사용자 비번 : <input type="password" name="pw" value="${user.pw}"><br>
 		
 		<spring:hasBindErrors name="user">
