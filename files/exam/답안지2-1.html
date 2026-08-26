@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            *{
+                margin:0px;
+                padding:0px;
+                box-sizing: border-box;
+            }
+            .container{
+                width:400px;
+                height:340px;
+                padding:20px;
+                background-color:darkolivegreen;
+            }
+            .container .head{
+                background-color: gray;
+                display: flex;
+            }
+            .head{
+                text-align: center;
+                color: white;
+            }
+            .signup{
+                width:50%;
+                height:30px;
+                background-color: green;
+            }
+            .login{
+                width:50%;
+            }
+            .body{
+                width:100%;
+                text-align: center;
+            }
+            .wcb{
+                font-size: 1.5em;
+                color: white;
+            }
+            .email{
+                width:100%;
+            }
+            .foot{
+                width:100%;
+            }
+            .inputEmail{
+                width:100%;
+                height:30px;
+            }
+            .inputPassword{
+                width:100%;
+                height:30px;
+            }
+            .login_button{
+                width:100%;
+                height:50px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <a href="답안지2-1.html" class="signup"><div>Sign Up</div></a>
+            <a href="답안지2-2.html" class="login"><div>Login</div></a>
+        </div>
+        <br>
+        <div class="body">
+            <div class="wcb">Welcome Back!</div><br>
+            <div><input type="email" class="inputEmail" placeholder="Email Address *"></div><br>
+            <div><input type="password" class="inputPassword" placeholder="Password *"></div><br>
+        </div>
+        <div class="foot">
+            <div><input type="button" value="LOG IN" class="login_button"></div>
+        </div>
+    </div>
+</body>
+</html>

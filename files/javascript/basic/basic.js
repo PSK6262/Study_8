@@ -1,0 +1,1 @@
+console.log('basic.js 파일에서 출력하는 console.log');

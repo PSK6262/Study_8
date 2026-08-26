@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            transition - 전환효과부여 (from -> to) 효과를 부여할 속성을 지정
+            animation - 여러 단계를 걸쳐서 전환효과 + 반복 + 재생/정지 / 효과를 부여할 속성을 지정
+            transform - 자체적으로 전환 효과를 주는 속성 (width,height같은 속성임 , 덮어쓰기 가능)
+        */
+        .box{
+            width:100px;
+            height:100px;
+            background-color: lightblue;
+            /* transform: translate(50px,150px);
+            transform: translate(200px);  */
+            /* 뒤에거만 적용 , 덮어쓰기라 , 실제 크기가 바뀌는 건 아니다. 보이는거만*/
+            /* transform: scale(2); */
+            /* transform: skew(180deg); */
+            transform: rotate(45deg);
+            transform-origin: right bottom; 
+            /* center center 기본값임 */  
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div>next 다음에 나타나는 요소</div>
+</body>
+</html>

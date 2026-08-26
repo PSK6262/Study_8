@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            background-color: antiquewhite;
+        }
+        .box:hover{
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1" onclick="btn_click()">버튼1</button>
+    <div class="box"></div>
+    <script>
+        const btn_click = ()=>{
+            console.log("btn 버튼1 눌림");
+        }
+        const divBox = document.getElementsByClassName('box')[0];
+
+        divBox.onmouseover = ()=>{
+            console.log("마우스가 올라옴");
+        }
+        divBox.addEventListener('mouseout',()=>{
+            console.log("마우스가 영역 밖으로 나감");
+        })
+        divBox.addEventListener('mousemove',()=>{
+            console.log("마우스가 움직임");
+        })
+        divBox.addEventListener('wheel',()=>{
+            console.log("마우스휠이 움직임");
+        })
+
+        divBox.addEventListener('click',(event)=>{ 
+            // browser가 web에서 발생하는 event객체 전달함
+            console.log(event);
+
+            console.log(event.clientX);
+            console.log(event.clientY);
+            console.log(event.pageX);
+            console.log(event.pageY);
+            console.log(event.screenX);
+            console.log(event.screenY);
+        })
+    </script>
+</body>
+</html>

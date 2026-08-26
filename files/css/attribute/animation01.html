@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:100px;
+            height:100px;
+            border: 1px solid black;
+            float :left;
+            animation-name:box-ani1,box-ani2;
+            animation-duration: 2s,2s;
+            animation-delay: 2s,0s;
+            animation-fill-mode: both; 
+            /* forward = 0%를 무시하고 끝나는 시점의 상태 유지 */
+            /* backward = 0%로 시작하고, 끝날때 0%의 상태로 돌아옴 */
+            /* both = 0%의 상태로 시작해서 100%에서 끝나도 유지 */
+            animation-iteration-count: infinite;
+            animation-direction: alternate; 
+            /* normal 정방향 reverse 역방향 altenate 왔다갔다 , altenate-reverse ,갔다왔다 */
+        }
+        .box:hover{
+            animation-play-state: paused;
+        }
+        @keyframes box-ani1 {
+            0% {
+                background-color: red;
+                width: 200px;
+            }
+            50% {
+                background-color: green;
+                width: 400px;
+            }
+            100% {
+                background-color: blue;
+                width: 600px;
+            }
+        }
+        @keyframes box-ani2 {
+            0% {
+                background-color: red;
+                height: 200px;
+            }
+            50% {
+                background-color: green;
+                height: 400px;
+            }
+            100% {
+                background-color: blue;
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

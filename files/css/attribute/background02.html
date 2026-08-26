@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 4000px;
+        }
+
+        .content {
+            width: 400px;
+            height: 400px;
+            overflow: scroll;  /* 해당 요소 공간이 넘치는 경우 스크롤바 추가 */
+            /* overflow: hidden; */ /*hidden 사용시 스크롤도 없고 그냥 아래가 짤림*/ 
+            background-image: url("../../img/img2.jpg");
+            background-attachment: scroll; 
+            /* fixed = 배경 고정, local = 내부 스크롤바 움직일 때 그림이 같이 움직임, 
+            scroll = 스크롤시 페이지랑 같이 */
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit, laboriosam ipsa harum magnam qui et labore repellendus, ipsam quisquam eius excepturi provident. Laudantium quae, consectetur reprehenderit deleniti quasi esse. Officiis.</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia quos possimus sapiente nisi quisquam modi ab iste nesciunt rem sed nulla, repudiandae, omnis nihil cum! A inventore fugit ratione aspernatur?</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis quis sed quasi laudantium qui, eveniet assumenda doloremque, corporis quae vero at ex porro omnis delectus doloribus cum eaque nesciunt. Dolor?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor accusamus dignissimos numquam. Dolorem veniam veritatis fuga! Recusandae eaque eius iusto quo consectetur. Odit voluptate assumenda commodi hic suscipit laudantium laboriosam!</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores, voluptas dolore. Velit molestias adipisci ipsum ut. Ipsam praesentium deserunt placeat. Minus deleniti repellendus temporibus. Illum iure assumenda odit quas alias!</p>
+    </div>
+</body>
+</html>

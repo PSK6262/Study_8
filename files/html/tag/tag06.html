@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body> <!-- label 태그 활용 -->
+        <!-- 암묵적인 방법 --> <!-- 이런식으로 할 시 체크박스 클릭이 쉬워진다 -->
+        <label> 치즈 <input type="checkbox"> </label>
+        <label> 크러스트 <input type="checkbox"> </label>
+        <label> 새우 <input type="checkbox"> </label>
+        <br><br>
+        <!-- 명시적인 방법 --> <!-- label에는 for input에는 id 속성 -->
+        <label for="cheese"> 치즈 </label>       <input type="checkbox" id="cheese">
+        <label for="crust"> 크러스트 </label>    <input type="checkbox" id="crust">
+        <label for="shrimp"> 새우 </label>       <input type="checkbox" id="shrimp">
+        <br><br>
+        <fieldset> <!-- 그냥 묶음 -->
+            <legend>족발 사이즈</legend> <!--fieldset 이름을 정함-->
+            <label>대<input type="radio" name="size"></label>
+            <label>중<input type="radio" name="size"></label>
+            <label>소<input type="radio" name="size"></label>
+        </fieldset>
+        <fieldset>
+            <legend>블로그 글쓰기</legend>
+            제목 <input type="text" value="초기값"> <br>
+            내용 <textarea name="" id="" placeholder="컨텐츠가 있는 태그" maxlength="10"></textarea>
+            <!-- maxlength -->
+            <textarea readonly> ReadOnly </textarea>
+        </fieldset>
+        <br>
+        <select>
+            <option value="">원조김밥</option>
+            <option value="">치즈김밥</option>
+            <option value="" selected>참치김밥</option> <!-- selected시 먼저 선택되어 있다 -->
+        </select>
+        <br>
+        <select multiple size="8"> <!-- 여러항목 선택가능 multiple , but 잘 안 쓰임 -->
+            <optgroup label="김밥"> <!-- 태그 -->
+                <option value="">원조김밥</option>
+                <option value="">치즈김밥</option>
+                <option value="">참치김밥</option>
+            </optgroup> 
+            <optgroup label="햄버거"> <!-- 태그 -->
+                <option value="" selected>싸이</option>
+                <option value="">빅맥</option>
+                <option value="">와퍼</option>
+            </optgroup> 
+        </select>
+        <br>
+        <button>버튼태그</button>
+        <input type="button" value="인풋버튼">
+        <input type="submit" name="" id="">
+        <input type="reset">
+
+        <button type="submit">버튼태그</button>
+        <button type="reset">버튼태그</button>
+        <button type="button" disabled>버튼태그</button> <!-- disabled 사용할 수 없음 -->
+        <button>
+            <img src="../img/img.jpg" width="30%" height="30%">
+        </button>
+
+        일회용품을 받지 않겠습니다. <input type="checkbox" checked>
+
+        <br><br>
+
+        <form>
+            <input type="text" value="아이디 입력">
+            <input type="text" placeholder="아이디 입력"> <!-- 반투명 느낌 -->
+            <input type="reset">
+            <input type="submit">
+        </form>
+    </body>
+</html>

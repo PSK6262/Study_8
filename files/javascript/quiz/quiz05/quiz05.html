@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width:150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="heart">달식당 좋아요♡<span id="heart"></span></div>
+    <script>
+        let count = 0;
+        const heart_count = document.getElementById('heart');
+        heart_count.onclick = ()=>{
+            count++;
+            heart_count.innerText="달식당 좋아요♡"+count;
+        }
+    </script>
+</body>
+</html>

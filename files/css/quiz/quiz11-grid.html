@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            display: grid;
+            margin:auto;
+            grid-template-columns: repeat(8, 100px);
+            grid-auto-rows: 100px;
+            width: 800px;
+        }
+        .half {
+            grid-column: span 4;
+            height: 100px;
+        }
+        .one {
+            grid-column: span 8;
+            height: 100px;
+        }
+        .rectangle-one {
+            grid-column: span 3;
+            grid-row: span 2;
+            height: 200px;
+        }
+        .rectangle-two {
+            grid-column: span 5;
+            height: 100px;
+        }
+        .block {
+            grid-column: span 2;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="half" style="background-color: yellow;"></div>
+        <div class="half" style="background-color: gray;"></div>
+        <div class="one" style="background-color: purple;"></div>
+        <div class="rectangle-one" style="background-color: aquamarine;"></div>
+        <div class="rectangle-two" style="background-color: yellow;"></div>
+        <div class="rectangle-two" style="background-color: pink;"></div>
+        <div class="block" style="background-color: yellow;"></div>
+        <div class="block" style="background-color: orange;"></div>
+        <div class="block" style="background-color: yellow;"></div>
+        <div class="block" style="background-color: green;"></div>
+    </div>
+</body>
+</html>

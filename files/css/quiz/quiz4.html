@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            height:4000px;
+        }
+        .box{
+            width:100px;
+            height:100px;
+        }
+        .red-box{
+            background-color: red;
+            position: relative;
+        }
+        .green-box{
+            background-color: green;
+            position: absolute;
+            top:50px;
+            left:50px;
+            z-index: 2;
+        }
+        .yellow-box{
+            background-color: yellow;
+            position: relative;
+        }
+        .wrap-box{
+            margin:100px;
+            width: 500px;
+            height: 300px;
+            position: relative;
+            border: 5px solid black;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: lightgray;">
+        <h3>배경색이 lightgray <br> h3글자</h3>
+    </div>
+    <div class="wrap-box">
+        <div class="box red-box">A</div>
+        <div class="box green-box">B</div>
+        <div class="box yellow-box">C</div>
+    </div>
+    <div>하단에 추가될 내용</div>
+</body>
+</html>

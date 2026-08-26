@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .box{
+            width:200px;
+            height:200px;
+        }
+        .black-box{
+            border: 2px solid black;
+            display: inline-block; /* 기존 가로배치 방법 */
+        }
+        .red-box{
+            background-color: red;
+            float:left;
+        }
+        .green-box{
+            background-color: green;
+            float:left;
+        }
+        .blue-box{
+            background-color: blue;
+            float:left;
+        }
+        .next{
+            background-color: gray;
+        }
+        .clear-box{
+            clear:both; /*어지간하면 both 왜냐면 전체 클리어를 원해서 만들기에*/
+        }
+        /* 
+            float 효과로 인해서 공간/위치인식이 안될때 해결법
+            1. 차지해야하는만큼 임이의 요소 추가 -> 공간차지 용도
+            2. clear속성 활용
+                1) float가 적용된 요소 중 마지막에 적용 (다음 float 적용하지 않는 요소에)
+                2) 가상요소 선택자 활용 clear
+        */
+        .container::after{ /* after라는 요소를 이용해서 clear*/
+            content:"";
+            display:block;
+            clear:both;
+        }
+    </style>
+</head>
+<body> <!-- 박스 사이에 공백이 생긴다, div 태그 이후 엔터가 들어가기 때문이다.
+    <div class="box black-box">A</div>
+    <div class="box black-box">B</div>
+    <div class="box black-box">C</div> -->
+    <div class="box black-box">
+    </div><div class="box black-box">
+    </div><div class="box black-box"></div>
+    <!-- 이와같이 내리면 사이에 틈이 없다 -->
+    <div class="container"> <!-- 컨테이너를 이용하는 방법 -->
+        <div class="box red-box"></div>
+        <div class="box green-box"></div>
+        <div class="box blue-box"></div>
+    </div>
+    <!-- <div class="box"></div> --> <!-- 1번 해결법, 이후 next 상자가 보인다 -->
+    <!-- <div class="clear-box"></div> --> <!-- 2번 해결법 -->
+    <!-- 부모요소 크기 = 고정된 사이즈 만큼 , 고정된 사이즈 없으면 자식이 차지하는 크기 
+        부모요소보다 자식요소가 더 큰 경우, 다른 요소가 그 자리에 들어오면 겹쳐버림
+        overflow:scroll 주면 스크롤로 넘길 수 있다. 넘는건 무시할거면 overflow:hidden -->
+    <div class="box next"></div>
+</body>
+</html>

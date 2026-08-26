@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            가로축 가운데정렬 
+            1. margin 0 auto;
+                inline 요소 대상 X
+                block 요소 대상시 block 요소 자기자신이 가운데 정렬
+            2. text-align : center;
+                inline 요소 대상 X
+                block 요소 대상시 내부 컨텐츠 요소가 가운데 정렬
+
+            3. 정리
+                block 요소  - > 가운데 정렬 원하면 자기자신 margin
+                inline 요소 - > 가운데 정렬 원하면 block 요소에 text-align:center
+        */  
+        .p1{
+            text-align: center;
+        }
+        .span1{
+            text-align: center;
+        }
+        .out-box{
+            margin: 0 auto;
+            border: 1px solid black;
+            width: 400px;
+        }
+        .inner-box{
+            width: 250px;
+            margin:0 auto;
+            border: 1px solid red;
+            text-align: center;
+        }
+        .inner-box span{
+            margin:0 auto; /* 적용 안됨 */
+            text-align: center; /* 적용 안됨 */
+        }
+    </style>
+</head>
+<body>
+    <p class="p1">p1p1</p>
+    <span class="span1">span1span1</span>
+    <div class="out-box">
+        <p>p tag outbox</p>
+        <span>span tag outbox</span>
+        <div class="inner-box">
+            <h2>h2 tag inner box</h2>
+            <span>span tag inner box</span>
+            <br>
+            <input type="button" value="버튼">
+        </div>
+    </div>
+</body>
+</html>

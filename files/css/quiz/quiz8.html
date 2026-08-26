@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            margin:5px;
+            position: relative;
+            width:100px;
+            height:100px;
+            background-color: blue;
+            animation-duration: 2s;
+            animation-delay: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate; 
+        }
+        .box:hover{ animation-play-state: paused; }
+        .box1{ animation-name:box-ani-X; }
+        .box2{ animation-name:box-ani-Y; }
+        .box3{ animation-name:box-ani-X , box-ani-Y; }
+        @keyframes box-ani-X {
+            0% { left:0; }
+            50% {
+                background-color: orange;
+                left:100px;
+            }
+            100% {
+                background-color: pink;
+                left:200px;
+            }
+        }
+        @keyframes box-ani-Y {
+            0% { top:0; }
+            50% {
+                background-color: orange;
+                top:100px;
+            }
+            100% {
+                background-color: pink;
+                top:200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1"></div><br>
+    <div class="box box2"></div><br>
+    <div class="box box3"></div><br>
+</body>
+</html>
