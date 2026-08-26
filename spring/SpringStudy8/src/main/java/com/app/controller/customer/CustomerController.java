@@ -71,6 +71,7 @@ public class CustomerController {
 			model.addAttribute(userValidError);
 			return "/customer/signup";
 		}
+		// 사용자 입력값 그대로 저장하지 말고, 암호화된 pw형태로 저장 (hash,SHA256)
 		
 		int result = userService.saveCustomerUser(user);
 		if(result > 0) return "redirect:/main";

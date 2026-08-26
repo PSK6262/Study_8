@@ -1,5 +1,6 @@
 package com.app.service.user.impl;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import com.app.dao.user.UserDAO;
 import com.app.dto.user.User;
 import com.app.dto.user.UserSearchCondition;
 import com.app.service.user.UserService;
+
+import com.app.util.SHA256Encryptor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,6 +37,14 @@ public class UserServiceImpl implements UserService {
 		//사용자 계정 추가시 사용 메소드
 		//고객계정으로 추가!
 		user.setUserType(CommonCode.USER_USERTYPE_CUSTOMER);
+		
+		try {
+			String encPw = SHA256Encryptor.encrypt(user.getPw());
+			user.setPw(encPw);
+			System.out.println(encPw);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
 		
 		int result = userDAO.saveUser(user);
 		
@@ -77,6 +88,14 @@ public class UserServiceImpl implements UserService {
 		return null;
 		*/
 		// 2) DB Query상에서 정보 일치 여부 비교 수행
+		
+		try {
+			String encPw = SHA256Encryptor.encrypt(user.getPw());
+			user.setPw(encPw);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		
 		User loginUser = userDAO.checkUserLogin(user); // object or null
 		return loginUser;
 	}
