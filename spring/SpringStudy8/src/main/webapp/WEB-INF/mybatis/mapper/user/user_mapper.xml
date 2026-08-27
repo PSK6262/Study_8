@@ -112,5 +112,16 @@
 		user_type = #{userType}
 		where id = #{id}
 	</update> 
-	
+	<insert id="saveUserProfileImage" parameterType="UserProfileImage">
+		insert into user_profile_image
+		values (
+			#{id},
+			#{fileName}
+		)
+	</insert>
+	<select id="findUserProfileImageById" resultType="UserProfileImage" parameterType="String">
+		select *
+		from user_profile_image
+		where id = #{id}
+	</select>
 </mapper>

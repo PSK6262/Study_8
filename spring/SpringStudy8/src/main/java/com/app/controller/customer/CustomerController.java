@@ -1,5 +1,8 @@
 package com.app.controller.customer;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,16 +21,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.app.common.ApiCommonCode;
 import com.app.common.CommonCode;
 import com.app.dto.api.ApiResponse;
 import com.app.dto.api.ApiResponseHeader;
+import com.app.dto.file.FileInfo;
 import com.app.dto.user.User;
 import com.app.dto.user.UserDupCheck;
+import com.app.dto.user.UserProfileImage;
+import com.app.dto.user.UserProfileRequestForm;
 import com.app.dto.user.UserValidError;
+import com.app.service.file.FileService;
 import com.app.service.user.UserService;
+import com.app.util.FileManager;
 import com.app.util.LoginManager;
+import com.app.util.SHA256Encryptor;
 import com.app.validator.UserCustomValidator;
 import com.app.validator.UserValidator;
 
@@ -42,6 +53,9 @@ public class CustomerController {
 	@Autowired
 	UserService userService; 
 	//사용자 계정정보 관련 서비스 로직
+	
+	@Autowired
+	FileService fileService;
 	
 	@GetMapping("/customer/signup")
 	public String signup() {
@@ -72,6 +86,14 @@ public class CustomerController {
 			return "/customer/signup";
 		}
 		// 사용자 입력값 그대로 저장하지 말고, 암호화된 pw형태로 저장 (hash,SHA256)
+		String encPw = null;
+		try {
+			encPw = SHA256Encryptor.encrypt(user.getPw());
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return "/customer/signup";
+		}
+		user.setPw(encPw);
 		
 		int result = userService.saveCustomerUser(user);
 		if(result > 0) return "redirect:/main";
@@ -140,9 +162,6 @@ public class CustomerController {
 	
 	@PostMapping("/customer/signin")
 	public String signinAction(User user, HttpSession session) {
-		System.out.println("로그인 시 입력한 값");
-		System.out.println(user);
-		
 		user.setUserType( CommonCode.USER_USERTYPE_CUSTOMER );
 		User loginUser = userService.checkUserLogin(user);
 		if(loginUser ==  null) { // 실패
@@ -162,12 +181,19 @@ public class CustomerController {
 	public String mypage(HttpSession session , Model model) {
 		// 로그인 되어있는 사용자의 정보 표시
 		// session -> loginUserId
-		
+				
 		if(session.getAttribute("loginUserId") != null) {
 			//String loginUserId = session.getAttribute("loginUserId").toString();
 			String loginUserId = LoginManager.getLoginUserId(session);
 			User user = userService.findUserById(loginUserId);
 			model.addAttribute("user", user);
+			
+			UserProfileImage userProfileImage = userService.findUserProfileImageById(loginUserId);
+			if(userProfileImage != null) { // 등록됨
+				FileInfo fileInfo = fileService.findFileInfoByFileName(userProfileImage.getFileName());
+				System.out.println(fileInfo);
+				model.addAttribute("fileInfo",fileInfo);
+			}
 			System.out.println("mypage");
 			return "customer/mypage";
 		}
@@ -200,7 +226,12 @@ public class CustomerController {
 		String password = request.getParameter("pw");
 		System.out.println(password);
 		User user = userService.findUserById(LoginManager.getLoginUserId(request));
-		user.setPw(password);
+		try {
+			user.setPw(SHA256Encryptor.encrypt(password));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return "redirect:/customer/modifyPw";
+		}
 		
 		int result = userService.modifyPassword(user);
 		
@@ -215,5 +246,78 @@ public class CustomerController {
 		System.out.println("다시 로그인 해주세요");
 		
 		return "redirect:/customer/signin";
+	}
+	
+	@PostMapping("/customer/profile")
+	public String profileAction(HttpServletRequest request, MultipartRequest multipartRequest) {
+		System.out.println( request.getParameter("id"));
+		System.out.println( request.getParameter("name"));
+		
+		MultipartFile file = multipartRequest.getFile("profileImage");
+		System.out.println(file.getName());
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.isEmpty());
+		System.out.println(file.getContentType());
+		System.out.println(file.getSize());
+		
+		return "redirect:/customer/mypage";
+	}
+	
+	@PostMapping("/customer/profiledto")
+	public String profiledtoAction(UserProfileRequestForm userProfileRequestForm) {
+		System.out.println( userProfileRequestForm.getId());
+		System.out.println( userProfileRequestForm.getName());
+		
+		//dto에 담음
+		MultipartFile file = userProfileRequestForm.getProfileImage();
+		
+		System.out.println(file.getName());
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.isEmpty());
+		System.out.println(file.getContentType());
+		System.out.println(file.getSize());
+		
+		// 첨부파일 처리
+		
+		// 파일명 겹치면 문제됨 -> DB로해결
+//		try {
+//			file.transferTo( new File("d:/fileStorage/" + file.getOriginalFilename()));
+//		} catch (IllegalStateException | IOException e) {
+//			e.printStackTrace();
+//		}
+		
+		//첨부파일 처리 FileManage 유틸 활용
+		FileInfo fileInfo = null;
+		try {
+			fileInfo= FileManager.storeFile(file);
+			System.out.println(fileInfo);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+			log.warn(e.getMessage());
+		}
+		// DB저장
+		int result = fileService.saveFileInfo(fileInfo);
+		
+		if(result < 0) { // 저장 X
+			System.out.println("파일 db에 추가중 오류발생");
+			return "redirect:/customer/mypage";
+		}
+		// 저장 O
+		System.out.println("DB에 저장 완료");
+		// DB연결
+		
+		UserProfileImage userProfileImage = new UserProfileImage();
+		userProfileImage.setId(userProfileRequestForm.getId());
+		userProfileImage.setFileName(fileInfo.getFileName());
+		int result2 = userService.saveUserProfileImage(userProfileImage);
+		
+		if( result2 < 0) { // 실패
+			System.out.println("프로필 사진 변경중 오류발생");
+			return "redirect:/customer/mypage";
+		}
+		
+		System.out.println("프로필 사진 변경 완료");
+		
+		return "redirect:/customer/mypage";
 	}
 }

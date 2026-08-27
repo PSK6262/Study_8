@@ -23,6 +23,7 @@ import com.app.dto.room.RoomSearchCondition;
 import com.app.service.room.RoomService;
 import com.app.service.user.UserService;
 import com.app.util.LoginManager;
+import com.app.util.SHA256Encryptor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -248,6 +249,7 @@ public class AdminController {
 		log.info(user);
 		
 		user.setUserType(CommonCode.USER_USERTYPE_ADMIN);
+		
 		System.out.println(user);
 		User loginUser = userService.checkUserLogin(user);
 		System.out.println(loginUser);

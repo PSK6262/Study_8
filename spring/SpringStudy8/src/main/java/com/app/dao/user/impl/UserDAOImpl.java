@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.dao.user.UserDAO;
 import com.app.dto.user.User;
+import com.app.dto.user.UserProfileImage;
 import com.app.dto.user.UserSearchCondition;
 
 
@@ -59,5 +60,17 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> findUserListBySearchCondition(UserSearchCondition userSearchCondition) {
 		List<User> userList = 	sqlSessionTemplate.selectList("user_mapper.findUserListBySearchCondition",userSearchCondition);
 		return userList;
+	}
+
+	@Override
+	public int saveUserProfileImage(UserProfileImage userProfileImage) {
+		int result = sqlSessionTemplate.insert("user_mapper.saveUserProfileImage",userProfileImage);
+		return result;
+	}
+
+	@Override
+	public UserProfileImage findUserProfileImageById(String id) {
+		UserProfileImage userProfileImage = sqlSessionTemplate.selectOne("user_mapper.findUserProfileImageById",id);
+		return userProfileImage;
 	}
 }
