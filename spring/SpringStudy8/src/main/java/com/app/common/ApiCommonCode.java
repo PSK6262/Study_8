@@ -15,4 +15,8 @@ public interface ApiCommonCode {
 	// 20 내부 오류
 	// 30 인증 오류
 	// 40 요청 파라미터 오류
+	
+	public final String API_LOGIN_SUCCESS = "100";
+	public final String API_LOGIN_SUCCESS_MSG = "로그인성공";
+	
 }
